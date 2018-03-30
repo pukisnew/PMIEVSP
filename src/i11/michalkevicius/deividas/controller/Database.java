@@ -1,6 +1,10 @@
 package i11.michalkevicius.deividas.controller;
 
+import i11.michalkevicius.deividas.model.User;
+
 import java.sql.*;
+import java.util.ArrayList;
+import java.util.List;
 
 public class Database
 {
@@ -59,6 +63,30 @@ public class Database
         boolean result = rs.next();
         rs.close();
         return result;
+    }
+
+    public static void removeUser(String id) throws SQLException
+    {
+        executeTransaction((c) ->
+        {
+            PreparedStatement stmt = c.prepareStatement("DELETE FROM InfoLogin WHERE Nr = ?");
+            stmt.setInt(1, new Integer(id));
+            stmt.executeUpdate();
+            return null;
+        });
+    }
+
+    public static List<User> getUsers() throws SQLException
+    {
+        try (ResultSet users = executeTransaction((c) -> c.createStatement().executeQuery("SELECT * FROM InfoLogin")))
+        {
+            ArrayList<User> returnable = new ArrayList<>();
+            while (users.next())
+            {
+                returnable.add(new User(users));
+            }
+            return returnable;
+        }
     }
 
     interface Transaction<T>
