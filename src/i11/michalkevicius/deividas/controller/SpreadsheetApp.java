@@ -18,10 +18,8 @@ public class SpreadsheetApp extends Application
         launch(args);
     }
 
-    @Override
-    public void start(Stage primaryStage) throws Exception
+    public static void launchAdminLoginStage() throws IOException
     {
-        SpreadsheetApp.primaryStage = primaryStage;
         switchStages(new AdminLoginStage());
     }
 
@@ -49,6 +47,13 @@ public class SpreadsheetApp extends Application
             c.close();
             return null;
         });
+    }
+
+    @Override
+    public void start(Stage primaryStage) throws Exception
+    {
+        SpreadsheetApp.primaryStage = primaryStage;
+        launchAdminLoginStage();
     }
 
     public static void launchUserManagement() throws IOException
