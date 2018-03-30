@@ -1,19 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import com.jfoenix.controls.JFXButton?>
-<?import com.jfoenix.controls.JFXTextField?>
-<?import javafx.scene.control.Label?>
-<?import javafx.scene.control.Menu?>
-<?import javafx.scene.control.MenuBar?>
-<?import javafx.scene.control.MenuItem?>
-<?import javafx.scene.control.ScrollPane?>
-<?import javafx.scene.control.TableColumn?>
-<?import javafx.scene.control.TableView?>
+<?import com.jfoenix.controls.*?>
+<?import javafx.scene.control.*?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
-
-
 <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="489.0" prefWidth="600.0" style="-fx-background-color: #74afad;" xmlns="http://javafx.com/javafx/8.0.141" xmlns:fx="http://javafx.com/fxml/1">
    <children>
       <MenuBar prefHeight="25.0" prefWidth="600.0">
@@ -50,8 +41,8 @@
       <JFXTextField layoutX="22.0" layoutY="252.0" promptText="Pavardė" />
       <JFXTextField layoutX="22.0" layoutY="289.0" promptText="El. paštas" />
       <JFXTextField layoutX="22.0" layoutY="325.0" promptText="Telefonas" />
-      <JFXTextField layoutX="22.0" layoutY="361.0" promptText="Prisijungimo vardas" />
-      <JFXTextField layoutX="22.0" layoutY="402.0" promptText="Slaptažodis" />
+      <JFXTextField layoutX="22.0" layoutY="361.0" promptText="Slaptažodis" />
+      <JFXTextField layoutX="22.0" layoutY="402.0" promptText="Data_nuo" />
       <VBox layoutX="339.0" layoutY="177.0" prefHeight="200.0" prefWidth="100.0">
          <children>
             <JFXButton prefHeight="26.0" prefWidth="105.0" style="-fx-background-color: #D9853B;" text="Registruoti" textAlignment="CENTER" textFill="#ececea">
@@ -73,5 +64,6 @@
             </JFXButton>
          </children>
       </VBox>
+      <JFXTextField layoutX="22.0" layoutY="438.0" promptText="Data_iki" />
    </children>
 </AnchorPane>

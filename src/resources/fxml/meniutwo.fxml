@@ -1,16 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import com.jfoenix.controls.JFXButton?>
-<?import javafx.scene.control.Label?>
-<?import javafx.scene.control.Menu?>
-<?import javafx.scene.control.MenuBar?>
-<?import javafx.scene.control.MenuItem?>
+<?import javafx.scene.control.*?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
-
 <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" style="-fx-background-color: #74afad;" xmlns="http://javafx.com/javafx/8.0.141" xmlns:fx="http://javafx.com/fxml/1">
    <children>
       <MenuBar prefHeight="25.0" prefWidth="600.0">
@@ -66,7 +62,7 @@
       </VBox>
       <ImageView fitHeight="81.0" fitWidth="107.0" layoutX="21.0" layoutY="39.0" pickOnBounds="true" preserveRatio="true">
          <image>
-            <Image url="@../Images/leaf-logo.png" />
+             <Image url="@../image/leaf-logo.png"/>
          </image>
       </ImageView>
    </children>
