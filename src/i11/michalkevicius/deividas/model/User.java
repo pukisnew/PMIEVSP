@@ -3,15 +3,28 @@ package i11.michalkevicius.deividas.model;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.beans.property.StringProperty;
 
+import java.sql.ResultSet;
+import java.sql.SQLException;
+
 public class User
 {
-    private StringProperty name = new SimpleStringProperty("");
     private StringProperty id = new SimpleStringProperty("");
+    private StringProperty name = new SimpleStringProperty("");
     private StringProperty lastname = new SimpleStringProperty("");
     private StringProperty email = new SimpleStringProperty("");
     private StringProperty telephone = new SimpleStringProperty("");
     private StringProperty login = new SimpleStringProperty("");
-    private StringProperty password = new SimpleStringProperty("");
+    //private StringProperty password = new SimpleStringProperty("");
+
+    public User(ResultSet users) throws SQLException
+    {
+        setId(users.getString("Nr"));
+        setName(users.getString("Vardas"));
+        setLastname(users.getString("Pavarde"));
+        setEmail(users.getString("Elpastas"));
+        setTelephone(users.getString("Telefonas"));
+        setLogin(users.getString("Login"));
+    }
 
     public String getName()
     {
@@ -71,15 +84,5 @@ public class User
     public void setLogin(String login)
     {
         this.login.set(login);
-    }
-
-    public String getPassword()
-    {
-        return password.get();
-    }
-
-    public void setPassword(String password)
-    {
-        this.password.set(password);
     }
 }
