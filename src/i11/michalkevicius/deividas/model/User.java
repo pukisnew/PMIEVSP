@@ -18,7 +18,7 @@ public class User
 
     public User() throws SQLException
     {
-        this(null);
+
     }
 
     public User(ResultSet users) throws SQLException
