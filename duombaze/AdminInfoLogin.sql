@@ -1,6 +1,6 @@
 BEGIN TRANSACTION;
 CREATE TABLE IF NOT EXISTS `AdminInfoLogin` (
-  `Nr`            INTEGER,
+  `Nr`            INTEGER PRIMARY KEY AUTOINCREMENT UNIQUE,
   `Vardas`        TEXT,
   `Pavardė`       TEXT,
   `Elpaštas`      TEXT,
