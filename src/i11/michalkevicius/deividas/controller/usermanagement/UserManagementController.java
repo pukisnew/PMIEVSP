@@ -1,6 +1,9 @@
 package i11.michalkevicius.deividas.controller.usermanagement;
 
+import com.jfoenix.controls.JFXPasswordField;
+import com.jfoenix.controls.JFXTextField;
 import i11.michalkevicius.deividas.controller.Database;
+import i11.michalkevicius.deividas.controller.SpreadsheetApp;
 import i11.michalkevicius.deividas.model.User;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -10,6 +13,7 @@ import javafx.fxml.Initializable;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 
+import java.io.IOException;
 import java.net.URL;
 import java.sql.SQLException;
 import java.util.Collections;
@@ -20,6 +24,11 @@ public class UserManagementController implements Initializable
 {
     private final ObservableList<User> data = FXCollections.observableArrayList();
     public TableView<User> table;
+    public JFXTextField lastname;
+    public JFXTextField name;
+    public JFXTextField email;
+    public JFXTextField phone;
+    public JFXPasswordField password;
 
     @Override
     public void initialize(URL location, ResourceBundle resources)
@@ -62,6 +71,31 @@ public class UserManagementController implements Initializable
         }
     }
 
+    public void onCreateClick(ActionEvent e)
+    {
+        try
+        {
+            User user = new User();
+            user.setLogin(email.getText());
+            user.setEmail(email.getText());
+            user.setTelephone(phone.getText());
+            user.setName(name.getText());
+            user.setLastname(lastname.getText());
+            Database.createUser(user, password.getText());
+            data.add(user);
+        }
+        catch (SQLException e1)
+        {
+            e1.printStackTrace();
+        }
+
+    }
+
+    public void onBackPress(ActionEvent actionEvent) throws IOException
+    {
+        SpreadsheetApp.launchAdminPanelStage();
+    }
+
     interface OnButtonCellClick
     {
         void handle(ActionEvent e, int index);
@@ -69,8 +103,8 @@ public class UserManagementController implements Initializable
 
     private class ButtonCell extends TableCell<User, Boolean> implements EventHandler<ActionEvent>
     {
-        final Button cellButton = new Button("Ištrinti");
-        final OnButtonCellClick handler;
+        private final Button cellButton = new Button("Ištrinti");
+        private final OnButtonCellClick handler;
 
         ButtonCell(OnButtonCellClick handler)
         {

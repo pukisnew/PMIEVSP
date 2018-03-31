@@ -65,15 +65,57 @@ public class Database
         return result;
     }
 
-    public static void removeUser(String id) throws SQLException
+    public static void removeUser(int id) throws SQLException
     {
         executeTransaction((c) ->
         {
             PreparedStatement stmt = c.prepareStatement("DELETE FROM InfoLogin WHERE Nr = ?");
+            stmt.setInt(1, id);
+            stmt.executeUpdate();
+            return null;
+        });
+    }
+
+    public static void removeAdmin(String id) throws SQLException
+    {
+        executeTransaction((c) ->
+        {
+            PreparedStatement stmt = c.prepareStatement("DELETE FROM AdminInfoLogin WHERE Nr = ?");
             stmt.setInt(1, new Integer(id));
             stmt.executeUpdate();
             return null;
         });
+    }
+
+    public static void createUser(String name, String lastName, String email, String telephone, String password) throws SQLException
+    {
+        createUser(name, lastName, email, telephone, email, password);
+    }
+
+    public static Integer createUser(String name, String lastName, String email, String telephone, String login, String password) throws SQLException
+    {
+        return executeTransaction((c) ->
+        {
+            PreparedStatement stmt = c.prepareStatement("INSERT INTO InfoLogin (Vardas, Pavarde, Elpastas, Telefonas, Login, Password, Data_Nuo, Data_Iki) VALUES (?, ?, ?, ?, ?, ?, date('now'), date('now'))");
+            stmt.setString(1, name);
+            stmt.setString(2, lastName);
+            stmt.setString(3, email);
+            stmt.setString(4, telephone);
+            stmt.setString(5, login);
+            stmt.setString(6, password);
+            stmt.executeUpdate();
+            Statement stmt2 = c.createStatement();
+            stmt2.execute("SELECT Nr FROM InfoLogin ORDER BY Nr DESC LIMIT 1");
+            ResultSet rs = stmt2.getResultSet();
+            rs.next();
+            return rs.getInt("Nr");
+        });
+    }
+
+    public static void createUser(User user, String password) throws SQLException
+    {
+        int id = createUser(user.getName(), user.getLastname(), user.getEmail(), user.getTelephone(), user.getLogin(), password);
+        user.setId(id);
     }
 
     public static List<User> getUsers() throws SQLException
