@@ -34,7 +34,7 @@ CREATE TABLE IF NOT EXISTS `MaistinesVertesLentele` (
   `DHA (Riebiosios rūgštys 22:6) (g)`      INTEGER DEFAULT 0,
   `Cholesterolis (mg)`                     INTEGER DEFAULT 0,
   `Retinolis (µg)`                         INTEGER DEFAULT 0,
-  `Retinolekvivalentas (µg)`               INTEGER DEFAULT 0,
+  `Retinol ekvivalentas (µg)`              INTEGER DEFAULT 0,
   `Beta-karotenas (µg)`                    INTEGER DEFAULT 0,
   `Vitaminas D (µg)`                       INTEGER DEFAULT 0,
   `Vitaminas E (mg)`                       INTEGER DEFAULT 0,
