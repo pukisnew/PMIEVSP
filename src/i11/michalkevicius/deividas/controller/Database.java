@@ -1,5 +1,6 @@
 package i11.michalkevicius.deividas.controller;
 
+import i11.michalkevicius.deividas.model.Product;
 import i11.michalkevicius.deividas.model.User;
 
 import java.sql.*;
@@ -105,6 +106,19 @@ public class Database
             while (users.next())
             {
                 returnable.add(new User(users));
+            }
+            return returnable;
+        }
+    }
+
+    public static List<Product> getProducts() throws SQLException
+    {
+        try (ResultSet products = executeTransaction((c) -> c.createStatement().executeQuery("SELECT * FROM MaistinesVertesLentele")))
+        {
+            ArrayList<Product> returnable = new ArrayList<>();
+            while (products.next())
+            {
+                returnable.add(new Product(products));
             }
             return returnable;
         }
