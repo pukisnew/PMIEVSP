@@ -1,29 +1,85 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import com.jfoenix.controls.JFXTreeTableView?>
+
 <?import javafx.scene.control.*?>
-<?import javafx.scene.layout.AnchorPane?>
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="489.0" prefWidth="600.0" style="-fx-background-color: #74afad;" xmlns="http://javafx.com/javafx/8.0.141" xmlns:fx="http://javafx.com/fxml/1">
-   <children>
-      <MenuBar prefHeight="25.0" prefWidth="600.0">
+<?import javafx.scene.layout.BorderPane?>
+<BorderPane xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/8.0.121"
+            fx:controller="i11.michalkevicius.deividas.controller.viewer.ViewerController">
+    <center>
+        <TableView fx:id="table" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity"
+                   prefHeight="600" prefWidth="1200">
+            <columns>
+                <TableColumn prefWidth="100" text="Pavadinimas"/>
+                <TableColumn prefWidth="100" text="Energija (kcal)"/>
+                <TableColumn prefWidth="100" text="Energija (kJ)"/>
+                <TableColumn prefWidth="100" text="Angliavandeniai (g)"/>
+                <TableColumn prefWidth="100" text="Riebalai (g)"/>
+                <TableColumn prefWidth="100" text="Baltymai (g)"/>
+                <TableColumn prefWidth="100" text="Skaidulinės medžiagos(g)"/>
+                <TableColumn prefWidth="100" text="Vanduo (g)"/>
+                <TableColumn prefWidth="100" text="Alkoholis (g)"/>
+                <TableColumn prefWidth="100" text="Pelenai (g)"/>
+                <TableColumn prefWidth="100" text="Monosacharidai (g)"/>
+                <TableColumn prefWidth="100" text="Disacharidai (g)"/>
+                <TableColumn prefWidth="100" text="Saharozė (g)"/>
+                <TableColumn prefWidth="100" text="Viso grūdo, viso (g)"/>
+                <TableColumn prefWidth="100" text="Cukrus, viso (g)"/>
+                <TableColumn prefWidth="100" text="Sočiosios riebiosios rūgštys (g)"/>
+                <TableColumn prefWidth="100" text="Riebiosios rūgštys 4:0-10:0 (g)"/>
+                <TableColumn prefWidth="100" text="Riebiosios rūgštys 12:0 (g)"/>
+                <TableColumn prefWidth="100" text="Riebiosios rūgštys 14:0 (g)"/>
+                <TableColumn prefWidth="100" text="Riebiosios rūgštys 16:0 (g)"/>
+                <TableColumn prefWidth="100" text="Riebiosios rūgštys 18:0 (g)"/>
+                <TableColumn prefWidth="100" text="Riebiosios rūgštys 20:0 (g)"/>
+                <TableColumn prefWidth="100" text="Mononesočiosios riebiosios rūgštys(g)"/>
+                <TableColumn prefWidth="100" text="Riebiosios rūgštys 16:1 (g)"/>
+                <TableColumn prefWidth="100" text="Riebiosios rūgštys 18:1 (g)"/>
+                <TableColumn prefWidth="100" text="Polinesočiosios riebiosios rūgštys (g)"/>
+                <TableColumn prefWidth="100" text="Riebiosios rūgštys 18:2 (g)"/>
+                <TableColumn prefWidth="100" text="Riebiosios rūgštys 18:3 (g)"/>
+                <TableColumn prefWidth="100" text="Riebiosios rūgštys 20:4 (g)"/>
+                <TableColumn prefWidth="100" text="EPA (Riebiosios rūgštys 20:5) (g)"/>
+                <TableColumn prefWidth="100" text="DPA (Riebiosios rūgštys 22:5) (g)"/>
+                <TableColumn prefWidth="100" text="DHA (Riebiosios rūgštys 22:6) (g)"/>
+                <TableColumn prefWidth="100" text="Cholesterolis (mg)"/>
+                <TableColumn prefWidth="100" text="Retinolis (µg)"/>
+                <TableColumn prefWidth="100" text="Retinolekvivalentas (µg)"/>
+                <TableColumn prefWidth="100" text="Beta-karotenas (µg)"/>
+                <TableColumn prefWidth="100" text="Vitaminas D (µg)"/>
+                <TableColumn prefWidth="100" text="Vitaminas E (mg)"/>
+                <TableColumn prefWidth="100" text="Vitaminas K (µg)"/>
+                <TableColumn prefWidth="100" text="Tiaminas (mg)"/>
+                <TableColumn prefWidth="100" text="Riboflavinas (mg)"/>
+                <TableColumn prefWidth="100" text="Vitaminas C (mg)"/>
+                <TableColumn prefWidth="100" text="Niacinas (mg)"/>
+                <TableColumn prefWidth="100" text="Niacino ekvivalentas (mg)"/>
+                <TableColumn prefWidth="100" text="Vitaminas B-6 (mg)"/>
+                <TableColumn prefWidth="100" text="Vitaminas B-12 (µg)"/>
+                <TableColumn prefWidth="100" text="Folatas (µg)"/>
+                <TableColumn prefWidth="100" text="Fosforas (mg)"/>
+                <TableColumn prefWidth="100" text="Jodas (µg)"/>
+                <TableColumn prefWidth="100" text="Geležis (mg)"/>
+                <TableColumn prefWidth="100" text="Kalcis (mg)"/>
+                <TableColumn prefWidth="100" text="Kalis (mg)"/>
+                <TableColumn prefWidth="100" text="Magnis (mg)"/>
+                <TableColumn prefWidth="100" text="Natris (mg)"/>
+                <TableColumn prefWidth="100" text="Druska (g)"/>
+                <TableColumn prefWidth="100" text="Selenas (µg)"/>
+                <TableColumn prefWidth="100" text="Cinkas (mg)"/>
+                <TableColumn prefWidth="100" text="Atliekos (pvz. lupenos) (%)"/>
+                <TableColumn prefWidth="100" text="Valgomosios dalies koeficientas"/>
+                <TableColumn prefWidth="100" text="Sausųjų medžiagų (g)"/>
+                <TableColumn prefWidth="100" text="Gyvūninių baltymų (g)"/>
+                <TableColumn prefWidth="100" text="Augalinių baltymų (g)"/>
+                <TableColumn prefWidth="100" text="Krakmolo (g)"/>
+            </columns>
+        </TableView>
+    </center>
+    <top>
+        <MenuBar BorderPane.alignment="CENTER" fx:id="bar">
         <menus>
-          <Menu mnemonicParsing="false" text="File">
-            <items>
-              <MenuItem mnemonicParsing="false" text="Close" />
-            </items>
-          </Menu>
-          <Menu mnemonicParsing="false" text="Edit">
-            <items>
-              <MenuItem mnemonicParsing="false" text="Delete" />
-            </items>
-          </Menu>
-          <Menu mnemonicParsing="false" text="Help">
-            <items>
-              <MenuItem mnemonicParsing="false" text="About" />
-            </items>
-          </Menu>
+            <Menu mnemonicParsing="false" onAction="#onBackPress" text="Grįžti"/>
         </menus>
       </MenuBar>
-      <JFXTreeTableView layoutX="6.0" layoutY="35.0" prefHeight="446.0" prefWidth="586.0" />
-   </children>
-</AnchorPane>
+    </top>
+</BorderPane>
