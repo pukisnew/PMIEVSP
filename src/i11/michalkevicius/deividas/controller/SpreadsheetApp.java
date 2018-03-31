@@ -2,6 +2,7 @@ package i11.michalkevicius.deividas.controller;
 
 import i11.michalkevicius.deividas.controller.admin.AdminLoginStage;
 import i11.michalkevicius.deividas.controller.adminpanel.AdminPanelStage;
+import i11.michalkevicius.deividas.controller.main.MainStage;
 import i11.michalkevicius.deividas.controller.usermanagement.UserManagementStage;
 import javafx.application.Application;
 import javafx.stage.Stage;
@@ -49,11 +50,16 @@ public class SpreadsheetApp extends Application
         });
     }
 
+    public static void launchMainStage() throws IOException
+    {
+        switchStages(new MainStage());
+    }
+
     @Override
     public void start(Stage primaryStage) throws Exception
     {
         SpreadsheetApp.primaryStage = primaryStage;
-        launchAdminLoginStage();
+        launchMainStage();
     }
 
     public static void launchUserManagement() throws IOException
