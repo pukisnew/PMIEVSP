@@ -16,8 +16,15 @@ public class User
     private StringProperty login = new SimpleStringProperty("");
     //private StringProperty password = new SimpleStringProperty("");
 
+    public User() throws SQLException
+    {
+        this(null);
+    }
+
     public User(ResultSet users) throws SQLException
     {
+        if (users == null)
+            return;
         setId(users.getString("Nr"));
         setName(users.getString("Vardas"));
         setLastname(users.getString("Pavarde"));
@@ -34,11 +41,6 @@ public class User
     public void setName(String name)
     {
         this.name.set(name);
-    }
-
-    public String getId()
-    {
-        return id.get();
     }
 
     public void setId(String id)
@@ -84,5 +86,15 @@ public class User
     public void setLogin(String login)
     {
         this.login.set(login);
+    }
+
+    public int getId()
+    {
+        return new Integer(this.id.getValue());
+    }
+
+    public void setId(int nr)
+    {
+        setId(nr + "");
     }
 }
