@@ -21,4 +21,9 @@ public class AdminPanelController
     {
         //SpreadsheetApp.launchDataManagement();
     }
+
+    public void onIseitiClick(ActionEvent actionEvent) throws IOException
+    {
+        SpreadsheetApp.launchAdminLoginStage();
+    }
 }

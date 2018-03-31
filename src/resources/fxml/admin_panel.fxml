@@ -68,7 +68,8 @@
                 <Font name="Times New Roman Bold" size="14.0"/>
             </font>
         </JFXButton>
-        <JFXButton style="-fx-background-color: #D9853B;" text="Išeiti" textFill="#ececea" GridPane.rowIndex="6">
+        <JFXButton onAction="#onIseitiClick" style="-fx-background-color: #D9853B;" text="Išeiti" textFill="#ececea"
+                   GridPane.rowIndex="6">
             <font>
                 <Font name="Times New Roman Bold" size="14.0"/>
             </font>
