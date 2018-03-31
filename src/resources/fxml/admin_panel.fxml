@@ -13,17 +13,17 @@
     <columnConstraints>
         <ColumnConstraints halignment="CENTER" hgrow="SOMETIMES" maxWidth="192.0" minWidth="10.0" prefWidth="80.0"/>
         <ColumnConstraints halignment="CENTER" hgrow="SOMETIMES" maxWidth="256.0" minWidth="10.0" prefWidth="193.0"/>
-        <ColumnConstraints hgrow="SOMETIMES" maxWidth="256.0" minWidth="10.0" prefWidth="128.0"/>
-        <ColumnConstraints halignment="CENTER" hgrow="SOMETIMES" maxWidth="258.0" minWidth="10.0" prefWidth="112.0"/>
+        <ColumnConstraints hgrow="SOMETIMES" maxWidth="256.0" minWidth="10.0" prefWidth="97.0"/>
+        <ColumnConstraints halignment="CENTER" hgrow="SOMETIMES" maxWidth="258.0" minWidth="10.0" prefWidth="143.0"/>
         <ColumnConstraints hgrow="SOMETIMES" maxWidth="323.0" minWidth="10.0" prefWidth="102.0"/>
     </columnConstraints>
     <rowConstraints>
         <RowConstraints maxHeight="167.0" minHeight="10.0" prefHeight="71.0" vgrow="SOMETIMES"/>
         <RowConstraints maxHeight="171.0" minHeight="10.0" prefHeight="33.0" valignment="CENTER" vgrow="SOMETIMES"/>
-        <RowConstraints maxHeight="160.0" minHeight="10.0" prefHeight="36.0" vgrow="SOMETIMES"/>
-        <RowConstraints maxHeight="195.0" minHeight="10.0" prefHeight="39.0" valignment="CENTER" vgrow="SOMETIMES"/>
-        <RowConstraints maxHeight="199.0" minHeight="0.0" prefHeight="30.0" vgrow="SOMETIMES"/>
-        <RowConstraints maxHeight="216.0" minHeight="0.0" prefHeight="34.0" valignment="CENTER" vgrow="SOMETIMES"/>
+        <RowConstraints maxHeight="160.0" minHeight="10.0" prefHeight="30" vgrow="SOMETIMES"/>
+        <RowConstraints maxHeight="171.0" minHeight="10.0" prefHeight="33.0" valignment="CENTER" vgrow="SOMETIMES"/>
+        <RowConstraints maxHeight="160" minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES"/>
+        <RowConstraints maxHeight="171.0" minHeight="10.0" prefHeight="33.0" valignment="CENTER" vgrow="SOMETIMES"/>
         <RowConstraints maxHeight="227.0" minHeight="10.0" prefHeight="67.0" vgrow="SOMETIMES"/>
     </rowConstraints>
     <children>
