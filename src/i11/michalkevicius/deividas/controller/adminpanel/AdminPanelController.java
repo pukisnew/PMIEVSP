@@ -12,11 +12,6 @@ public class AdminPanelController
         SpreadsheetApp.launchUserManagement();
     }
 
-    public void onAdministratoriaiClick(ActionEvent actionEvent) throws IOException
-    {
-        //SpreadsheetApp.launchAdminUserManagement();
-    }
-
     public void onDataClick(ActionEvent actionEvent) throws IOException
     {
         //SpreadsheetApp.launchDataManagement();
@@ -24,6 +19,6 @@ public class AdminPanelController
 
     public void onIseitiClick(ActionEvent actionEvent) throws IOException
     {
-        SpreadsheetApp.launchAdminLoginStage();
+        SpreadsheetApp.launchMainStage();
     }
 }

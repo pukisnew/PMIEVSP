@@ -32,9 +32,9 @@ public class AdminLoginController
         }
     }
 
-    public void onBackButtonPressed(ActionEvent actionEvent)
+    public void onBackButtonPressed(ActionEvent actionEvent) throws IOException
     {
-
+        SpreadsheetApp.launchMainStage();
     }
 
     public void onKeyTyped(KeyEvent keyEvent) throws SQLException, IOException
