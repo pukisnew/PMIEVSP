@@ -5,9 +5,80 @@ import javafx.beans.property.StringProperty;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.Collections;
 
 public class Product
 {
+    public Product(ResultSet product) throws SQLException
+    {
+        if (product == null)
+            return;
+        setName(product.getString("Pavadinimas"));
+        setKcal(product.getFloat("Energija (kcal)") + "");
+        setKj(product.getFloat("Energija (kJ)") + "");
+        setCarbohydrates(product.getFloat("Angliavandeniai (g)") + "");
+        setFat(product.getFloat("Riebalai (g)") + "");
+        setProtein(product.getFloat("Baltymai (g)") + "");
+        setFiber(product.getFloat("Skaidulinės medžiagos(g)") + "");
+        setWater(product.getFloat("Vanduo (g)") + "");
+        setAlcohol(product.getFloat("Alkoholis (g)") + "");
+        setAsh(product.getFloat("Pelenai (g)") + "");
+        setMonosacharids(product.getFloat("Monosacharidai (g)") + "");
+        setDisacharids(product.getFloat("Disacharidai (g)") + "");
+        setFakeSuger(product.getFloat("Saharozė (g)") + "");
+        setGrain(product.getFloat("Viso grūdo, viso (g)") + "");
+        setSugar(product.getFloat("Cukrus, viso (g)") + "");
+        setSuperFat(product.getFloat("Sočiosios riebiosios rūgštys (g)") + "");
+        setFat4_10(product.getFloat("Riebiosios rūgštys 4:0-10:0 (g)") + "");
+        setFat12(product.getFloat("Riebiosios rūgštys 12:0 (g)") + "");
+        setFat14(product.getFloat("Riebiosios rūgštys 14:0 (g)") + "");
+        setFat16(product.getFloat("Riebiosios rūgštys 16:0 (g)") + "");
+        setFat18(product.getFloat("Riebiosios rūgštys 18:0 (g)") + "");
+        setFat20(product.getFloat("Riebiosios rūgštys 20:0 (g)") + "");
+        setMonoSuperFat(product.getFloat("Mononesočiosios riebiosios rūgštys(g)") + "");
+        setFat16_1(product.getFloat("Riebiosios rūgštys 16:1 (g)") + "");
+        setFat18_1(product.getFloat("Riebiosios rūgštys 18:1 (g)") + "");
+        setPoliSuperFat(product.getFloat("Polinesočiosios riebiosios rūgštys (g)") + "");
+        setFat18_2(product.getFloat("Riebiosios rūgštys 18:2 (g)") + "");
+        setFat18_3(product.getFloat("Riebiosios rūgštys 18:3 (g)") + "");
+        setFat20_4(product.getFloat("Riebiosios rūgštys 20:4 (g)") + "");
+        setEpa(product.getFloat("EPA (Riebiosios rūgštys 20:5) (g)") + "");
+        setDpa(product.getFloat("DPA (Riebiosios rūgštys 22:5) (g)") + "");
+        setDha(product.getFloat("DHA (Riebiosios rūgštys 22:6) (g)") + "");
+        setCholesterol(product.getFloat("Cholesterolis (mg)") + "");
+        setRetinol(product.getFloat("Retinolis (µg)") + "");
+        setRetinolequivalent(product.getFloat("Retinol ekvivalentas (µg)") + "");
+        setBetakaroten(product.getFloat("Beta-karotenas (µg)") + "");
+        setVit_d(product.getFloat("Vitaminas D (µg)") + "");
+        setVit_e(product.getFloat("Vitaminas E (mg)") + "");
+        setVit_k(product.getFloat("Vitaminas K (µg)") + "");
+        setTiamin(product.getFloat("Tiaminas (mg)") + "");
+        setRiboflavin(product.getFloat("Riboflavinas (mg)") + "");
+        setVit_c(product.getFloat("Vitaminas C (mg)") + "");
+        setNiacin(product.getFloat("Niacinas (mg)") + "");
+        setNiacinequivalent(product.getFloat("Niacino ekvivalentas (mg)") + "");
+        setVit_b_6(product.getFloat("Vitaminas B-6 (mg)") + "");
+        setVit_b_12(product.getFloat("Vitaminas B-12 (µg)") + "");
+        setFolate(product.getFloat("Folatas (µg)") + "");
+        setPhosphorus(product.getFloat("Fosforas (mg)") + "");
+        setIodine(product.getFloat("Jodas (µg)") + "");
+        setIron(product.getFloat("Geležis (mg)") + "");
+        setCalcium(product.getFloat("Kalcis (mg)") + "");
+        setPotassium(product.getFloat("Kalis (mg)") + "");
+        setMagnesium(product.getFloat("Magnis (mg)") + "");
+        setSodium(product.getFloat("Natris (mg)") + "");
+        setSalt(product.getFloat("Druska (g)") + "");
+        setSelenium(product.getFloat("Selenas (µg)") + "");
+        setZinc(product.getFloat("Cinkas (mg)") + "");
+        setRest(product.getFloat("Atliekos (pvz. lupenos) (%)") + "");
+        setEdible_coefficient(product.getFloat("Valgomosios dalies koeficientas") + "");
+        setDry_material(product.getFloat("Sausųjų medžiagų (g)") + "");
+        setAnimal_protein(product.getFloat("Gyvūninių baltymų (g)") + "");
+        setNatural_protein(product.getFloat("Augalinių baltymų (g)") + "");
+        setStarch(product.getFloat("Krakmolo (g)") + "");
+    }
+
     private StringProperty name = new SimpleStringProperty("");
     private StringProperty kcal = new SimpleStringProperty("");
     private StringProperty kj = new SimpleStringProperty("");
@@ -77,73 +148,74 @@ public class Product
 
     }
 
-    Product(ResultSet product) throws SQLException
+    public static ArrayList<String> propertyNames()
     {
-        if (product == null)
-            return;
-        setName(product.getString("name") + "");
-        setKcal(product.getFloat("Energija (kcal)") + "");
-        setKj(product.getFloat("Energija (kJ)") + "");
-        setCarbohydrates(product.getFloat("Angliavandeniai (g)") + "");
-        setFat(product.getFloat("Riebalai (g)") + "");
-        setProtein(product.getFloat("Baltymai (g)") + "");
-        setFiber(product.getFloat("Skaidulinės medžiagos(g)") + "");
-        setWater(product.getFloat("Vanduo (g)") + "");
-        setAlcohol(product.getFloat("Alkoholis (g)") + "");
-        setAsh(product.getFloat("Pelenai (g)") + "");
-        setMonosacharids(product.getFloat("Monosacharidai (g)") + "");
-        setDisacharids(product.getFloat("Disacharidai (g)") + "");
-        setFakeSuger(product.getFloat("Saharozė (g)") + "");
-        setGrain(product.getFloat("Viso grūdo, viso (g)") + "");
-        setSugar(product.getFloat("Cukrus, viso (g)") + "");
-        setSuperFat(product.getFloat("Sočiosios riebiosios rūgštys (g)") + "");
-        setFat4_10(product.getFloat("Riebiosios rūgštys 4:0-10:0 (g)") + "");
-        setFat12(product.getFloat("Riebiosios rūgštys 12:0 (g)") + "");
-        setFat14(product.getFloat("Riebiosios rūgštys 14:0 (g)") + "");
-        setFat16(product.getFloat("Riebiosios rūgštys 16:0 (g)") + "");
-        setFat18(product.getFloat("Riebiosios rūgštys 18:0 (g)") + "");
-        setFat20(product.getFloat("Riebiosios rūgštys 20:0 (g)") + "");
-        setMonoSuperFat(product.getFloat("Mononesočiosios riebiosios rūgštys(g)") + "");
-        setFat16_1(product.getFloat("Riebiosios rūgštys 16:1 (g)") + "");
-        setFat18_1(product.getFloat("Riebiosios rūgštys 18:1 (g)") + "");
-        setPoliSuperFat(product.getFloat("Polinesočiosios riebiosios rūgštys (g)") + "");
-        setFat18_2(product.getFloat("Riebiosios rūgštys 18:2 (g)") + "");
-        setFat18_3(product.getFloat("Riebiosios rūgštys 18:3 (g)") + "");
-        setFat20_4(product.getFloat("Riebiosios rūgštys 20:4 (g)") + "");
-        setEpa(product.getFloat("EPA (Riebiosios rūgštys 20:5) (g)") + "");
-        setDpa(product.getFloat("DPA (Riebiosios rūgštys 22:5) (g)") + "");
-        setDha(product.getFloat("DHA (Riebiosios rūgštys 22:6) (g)") + "");
-        setCholesterol(product.getFloat("Cholesterolis (mg)") + "");
-        setRetinol(product.getFloat("Retinolis (µg)") + "");
-        setRetinolequivalent(product.getFloat("Retinolekvivalentas (µg)") + "");
-        setBetakaroten(product.getFloat("Beta-karotenas (µg)") + "");
-        setVit_d(product.getFloat("Vitaminas D (µg)") + "");
-        setVit_e(product.getFloat("Vitaminas E (mg)") + "");
-        setVit_k(product.getFloat("Vitaminas K (µg)") + "");
-        setTiamin(product.getFloat("Tiaminas (mg)") + "");
-        setRiboflavin(product.getFloat("Riboflavinas (mg)") + "");
-        setVit_c(product.getFloat("Vitaminas C (mg)") + "");
-        setNiacin(product.getFloat("Niacinas (mg)") + "");
-        setNiacinequivalent(product.getFloat("Niacino ekvivalentas (mg)") + "");
-        setVit_b_6(product.getFloat("Vitaminas B-6 (mg)") + "");
-        setVit_b_12(product.getFloat("Vitaminas B-12 (µg)") + "");
-        setFolate(product.getFloat("Folatas (µg)") + "");
-        setPhosphorus(product.getFloat("Fosforas (mg)") + "");
-        setIodine(product.getFloat("Jodas (µg)") + "");
-        setIron(product.getFloat("Geležis (mg)") + "");
-        setCalcium(product.getFloat("Kalcis (mg)") + "");
-        setPotassium(product.getFloat("Kalis (mg)") + "");
-        setMagnesium(product.getFloat("Magnis (mg)") + "");
-        setSodium(product.getFloat("Natris (mg)") + "");
-        setSalt(product.getFloat("Druska (g)") + "");
-        setSelenium(product.getFloat("Selenas (µg)") + "");
-        setZinc(product.getFloat("Cinkas (mg)") + "");
-        setRest(product.getFloat("Atliekos (pvz. lupenos) (%)") + "");
-        setEdible_coefficient(product.getFloat("Valgomosios dalies koeficientas") + "");
-        setDry_material(product.getFloat("Sausųjų medžiagų (g)") + "");
-        setAnimal_protein(product.getFloat("Gyvūninių baltymų (g)") + "");
-        setNatural_protein(product.getFloat("Augalinių baltymų (g)") + "");
-        setStarch(product.getFloat("Krakmolo (g)") + "");
+        ArrayList<String> names = new ArrayList<>();
+        Collections.addAll(names,
+                "name",
+                "kcal",
+                "kj",
+                "carbohydrates",
+                "fat",
+                "protein",
+                "fiber",
+                "water",
+                "alcohol",
+                "ash",
+                "monosacharids",
+                "disacharids",
+                "fakeSuger",
+                "grain",
+                "sugar",
+                "superFat",
+                "fat4_10",
+                "fat12",
+                "fat14",
+                "fat16",
+                "fat18",
+                "fat20",
+                "monoSuperFat",
+                "fat16_1",
+                "fat18_1",
+                "poliSuperFat",
+                "fat18_2",
+                "fat18_3",
+                "fat20_4",
+                "epa",
+                "dpa",
+                "dha",
+                "cholesterol",
+                "retinol",
+                "retinolequivalent",
+                "betakaroten",
+                "vit_d",
+                "vit_e",
+                "vit_k",
+                "tiamin",
+                "riboflavin",
+                "vit_c",
+                "niacin",
+                "niacinequivalent",
+                "vit_b_6",
+                "vit_b_12",
+                "folate",
+                "phosphorus",
+                "iodine",
+                "iron",
+                "calcium",
+                "potassium",
+                "magnesium",
+                "sodium",
+                "salt",
+                "selenium",
+                "zinc",
+                "rest",
+                "edible_coefficient",
+                "dry_material",
+                "animal_protein",
+                "natural_protein",
+                "starch");
+        return names;
     }
 
     Product(Product product, float coefficient)
