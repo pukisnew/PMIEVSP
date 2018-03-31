@@ -4,10 +4,13 @@ import i11.michalkevicius.deividas.controller.admin.AdminLoginStage;
 import i11.michalkevicius.deividas.controller.adminpanel.AdminPanelStage;
 import i11.michalkevicius.deividas.controller.main.MainStage;
 import i11.michalkevicius.deividas.controller.usermanagement.UserManagementStage;
+import i11.michalkevicius.deividas.controller.viewer.ViewerStage;
+import i11.michalkevicius.deividas.model.Product;
 import javafx.application.Application;
 import javafx.stage.Stage;
 
 import java.io.IOException;
+import java.util.List;
 
 public class SpreadsheetApp extends Application
 {
@@ -70,6 +73,11 @@ public class SpreadsheetApp extends Application
     public static void launchAdminPanelStage() throws IOException
     {
         switchStages(new AdminPanelStage());
+    }
+
+    public static void launchViewerStage(List<Product> products) throws IOException
+    {
+        switchStages(new ViewerStage(products));
     }
 
 /*    public static void launchAdminUserManagement()
