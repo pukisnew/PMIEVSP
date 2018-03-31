@@ -22,23 +22,13 @@ public class Database
         catch (Exception e)
         {
             e.printStackTrace();
-            System.exit(500);
+            System.exit(255);
         }
     }
 
     public static <T> T executeTransaction(Transaction<T> t) throws SQLException
     {
         return t.executeTransaction(c);
-    }
-
-    public static boolean attemptLoggingIn(String username, String password) throws SQLException
-    {
-        return executeTransaction((Connection c) ->
-        {
-            PreparedStatement stmt = c.prepareStatement("SELECT * FROM InfoLogin WHERE Elpastas = ? AND Password = ?");
-            prepareLoginStatement(stmt, username, password);
-            return checkLoginResult(stmt.getResultSet());
-        });
     }
 
     public static boolean attemptAdminLogin(String username, String password) throws SQLException
@@ -69,19 +59,8 @@ public class Database
     {
         executeTransaction((c) ->
         {
-            PreparedStatement stmt = c.prepareStatement("DELETE FROM InfoLogin WHERE Nr = ?");
-            stmt.setInt(1, id);
-            stmt.executeUpdate();
-            return null;
-        });
-    }
-
-    public static void removeAdmin(String id) throws SQLException
-    {
-        executeTransaction((c) ->
-        {
             PreparedStatement stmt = c.prepareStatement("DELETE FROM AdminInfoLogin WHERE Nr = ?");
-            stmt.setInt(1, new Integer(id));
+            stmt.setInt(1, id);
             stmt.executeUpdate();
             return null;
         });
@@ -96,16 +75,16 @@ public class Database
     {
         return executeTransaction((c) ->
         {
-            PreparedStatement stmt = c.prepareStatement("INSERT INTO InfoLogin (Vardas, Pavarde, Elpastas, Telefonas, Login, Password, Data_Nuo, Data_Iki) VALUES (?, ?, ?, ?, ?, ?, date('now'), date('now'))");
+            PreparedStatement stmt = c.prepareStatement("INSERT INTO AdminInfoLogin (Vardas, Pavardė, Elpaštas, Telefonas, Slaptažodis, Prisijungimas) VALUES (?, ?, ?, ?, ?, ?)");
             stmt.setString(1, name);
             stmt.setString(2, lastName);
             stmt.setString(3, email);
             stmt.setString(4, telephone);
-            stmt.setString(5, login);
-            stmt.setString(6, password);
+            stmt.setString(5, password);
+            stmt.setString(6, login);
             stmt.executeUpdate();
             Statement stmt2 = c.createStatement();
-            stmt2.execute("SELECT Nr FROM InfoLogin ORDER BY Nr DESC LIMIT 1");
+            stmt2.execute("SELECT Nr FROM AdminInfoLogin ORDER BY Nr DESC LIMIT 1");
             ResultSet rs = stmt2.getResultSet();
             rs.next();
             return rs.getInt("Nr");
@@ -120,7 +99,7 @@ public class Database
 
     public static List<User> getUsers() throws SQLException
     {
-        try (ResultSet users = executeTransaction((c) -> c.createStatement().executeQuery("SELECT * FROM InfoLogin")))
+        try (ResultSet users = executeTransaction((c) -> c.createStatement().executeQuery("SELECT * FROM AdminInfoLogin")))
         {
             ArrayList<User> returnable = new ArrayList<>();
             while (users.next())
