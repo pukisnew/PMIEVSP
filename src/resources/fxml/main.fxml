@@ -8,7 +8,8 @@
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.text.*?>
 <GridPane xmlns:fx="http://javafx.com/fxml/1" prefHeight="400.0" prefWidth="600.0"
-          style="-fx-background-color: #74afad;" xmlns="http://javafx.com/javafx/8.0.121">
+          style="-fx-background-color: #74afad;" xmlns="http://javafx.com/javafx/8.0.121"
+          fx:controller="i11.michalkevicius.deividas.controller.main.MainController">
     <columnConstraints>
         <ColumnConstraints halignment="CENTER" hgrow="SOMETIMES" maxWidth="192.0" minWidth="10.0" prefWidth="80.0"/>
         <ColumnConstraints halignment="CENTER" hgrow="SOMETIMES" maxWidth="256.0" minWidth="10.0" prefWidth="216.0"/>
@@ -47,20 +48,20 @@
             </font>
         </Label>
 
-        <JFXButton style="-fx-background-color: #D9853B;" text="Tvarkyti" textFill="#ececea" GridPane.columnIndex="3"
-                   GridPane.rowIndex="4">
+        <JFXButton onAction="#onDataTableViewClick" style="-fx-background-color: #D9853B;" text="Naudoti"
+                   textFill="#ececea" GridPane.columnIndex="3" GridPane.rowIndex="4">
             <font>
                 <Font name="Times New Roman Bold" size="14.0"/>
             </font>
         </JFXButton>
-        <JFXButton prefWidth="73.0" style="-fx-background-color: #D9853B;" text="Tvarkyti" textFill="#ececea"
-                   GridPane.columnIndex="3" GridPane.rowIndex="2">
+        <JFXButton onAction="#onCalculatorClick" prefWidth="73.0" style="-fx-background-color: #D9853B;" text="Naudoti"
+                   textFill="#ececea" GridPane.columnIndex="3" GridPane.rowIndex="2">
             <font>
                 <Font name="Times New Roman Bold" size="14.0"/>
             </font>
         </JFXButton>
-        <JFXButton layoutX="7.0" layoutY="361.0" text="Valdymo panelė" textFill="#255451" GridPane.columnSpan="5"
-                   GridPane.rowIndex="6">
+        <JFXButton layoutX="7.0" layoutY="361.0" onAction="#onControlPanelClick" text="Valdymo panelė"
+                   textFill="#255451" GridPane.columnSpan="5" GridPane.rowIndex="6">
             <font>
                 <Font name="Times New Roman Bold" size="12.0"/>
             </font>
