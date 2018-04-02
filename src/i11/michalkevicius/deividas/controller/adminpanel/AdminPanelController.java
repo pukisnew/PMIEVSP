@@ -14,7 +14,7 @@ public class AdminPanelController
 
     public void onDataClick(ActionEvent actionEvent) throws IOException
     {
-        //SpreadsheetApp.launchDataManagement();
+        SpreadsheetApp.launchProductManagementStage();
     }
 
     public void onIseitiClick(ActionEvent actionEvent) throws IOException
