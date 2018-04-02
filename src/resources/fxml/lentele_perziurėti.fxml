@@ -78,7 +78,9 @@
     <top>
         <MenuBar BorderPane.alignment="CENTER" fx:id="bar">
         <menus>
-            <Menu mnemonicParsing="false" onAction="#onBackPress" text="Grįžti"/>
+            <Menu mnemonicParsing="false" text="Grįžti">
+                <MenuItem onAction="#onBackPress"/>
+            </Menu>
         </menus>
       </MenuBar>
     </top>

@@ -2,6 +2,7 @@ package i11.michalkevicius.deividas.controller.viewer;
 
 import i11.michalkevicius.deividas.controller.SpreadsheetApp;
 import i11.michalkevicius.deividas.model.Product;
+import javafx.beans.Observable;
 import javafx.beans.property.ReadOnlyDoubleProperty;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -36,10 +37,10 @@ public class ViewerController implements Initializable
     public void initialize(URL location, ResourceBundle resources)
     {
         table.setItems(data);
-        table.setEditable(false);
         ObservableList<TableColumn<Product, ?>> columns = table.getColumns();
         List<String> propertyNames = Product.propertyNames();
         List<PropertyValueFactory<Product, String>> mappedColumns = propertyNames.parallelStream().map((Function<String, PropertyValueFactory<Product, String>>) PropertyValueFactory::new).collect(Collectors.toList());
+        bar.getMenus().get(0).showingProperty().addListener(this::onMenuShown);
         IntStream.range(0, columns.size())
                 .forEach((it) ->
                 {
@@ -49,9 +50,26 @@ public class ViewerController implements Initializable
                 });
     }
 
-    public void onBackPress(ActionEvent actionEvent) throws IOException
+    public void onBackPress(ActionEvent actionEvent)
     {
-        SpreadsheetApp.launchMainStage();
+        try
+        {
+            data.clear();
+            table.getColumns().clear();
+            table = null;
+            bar = null;
+            SpreadsheetApp.launchMainStage();
+        }
+        catch (IOException err)
+        {
+
+        }
+    }
+
+    private void onMenuShown(Observable observable, boolean old, boolean newvalue)
+    {
+        if (newvalue)
+            onBackPress(null);
     }
 
     public void setResizeables(ReadOnlyDoubleProperty width, ReadOnlyDoubleProperty height)
