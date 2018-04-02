@@ -27,10 +27,9 @@ public class ViewerController implements Initializable
     public MenuBar bar;
     private ObservableList<Product> data = FXCollections.observableArrayList();
 
-    public void setData(List<Product> data)
+    public void setData(ObservableList<Product> data)
     {
-        this.data.clear();
-        this.data.addAll(data);
+        table.setItems(data);
     }
 
     @Override

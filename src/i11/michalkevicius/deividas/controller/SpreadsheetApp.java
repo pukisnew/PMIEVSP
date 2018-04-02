@@ -2,16 +2,17 @@ package i11.michalkevicius.deividas.controller;
 
 import i11.michalkevicius.deividas.controller.admin.AdminLoginStage;
 import i11.michalkevicius.deividas.controller.adminpanel.AdminPanelStage;
+import i11.michalkevicius.deividas.controller.calculator.CalculatorStage;
 import i11.michalkevicius.deividas.controller.main.MainStage;
 import i11.michalkevicius.deividas.controller.productmanagement.ProductManagementStage;
 import i11.michalkevicius.deividas.controller.usermanagement.UserManagementStage;
 import i11.michalkevicius.deividas.controller.viewer.ViewerStage;
 import i11.michalkevicius.deividas.model.Product;
 import javafx.application.Application;
+import javafx.collections.ObservableList;
 import javafx.stage.Stage;
 
 import java.io.IOException;
-import java.util.List;
 
 public class SpreadsheetApp extends Application
 {
@@ -30,11 +31,22 @@ public class SpreadsheetApp extends Application
 
     private static void switchStages(Stage stage)
     {
-        if (currentStage != null)
-            currentStage.close();
-        currentStage = stage;
-        currentStage.initOwner(primaryStage);
-        currentStage.show();
+        switchStages(stage, true);
+    }
+
+    private static void switchStages(Stage stage, boolean hideLast)
+    {
+
+        if (hideLast)
+        {
+            if (currentStage != null)
+                currentStage.close();
+            currentStage = stage;
+            stage.initOwner(primaryStage);
+        }
+        else
+            stage.initOwner(currentStage);
+        stage.show();
     }
 
     @Override
@@ -76,14 +88,24 @@ public class SpreadsheetApp extends Application
         switchStages(new AdminPanelStage());
     }
 
-    public static void launchViewerStage(List<Product> products) throws IOException
+    public static void launchViewerStage(ObservableList<Product> products) throws IOException
     {
-        switchStages(new ViewerStage(products));
+        launchViewerStage(products, true);
+    }
+
+    public static void launchViewerStage(ObservableList<Product> products, boolean hideLast) throws IOException
+    {
+        switchStages(new ViewerStage(products), hideLast);
     }
 
     public static void launchProductManagementStage() throws IOException
     {
         switchStages(new ProductManagementStage());
+    }
+
+    public static void launchCalculator() throws IOException
+    {
+        switchStages(new CalculatorStage());
     }
 
 /*    public static void launchAdminUserManagement()

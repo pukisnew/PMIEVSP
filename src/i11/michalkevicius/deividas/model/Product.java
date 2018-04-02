@@ -150,7 +150,7 @@ public class Product
 
     }
 
-    Product(Product product, float coefficient)
+    public Product(Product product, float coefficient)
     {
         setId(product.getId());
         setName((product.getName()));
@@ -222,7 +222,7 @@ public class Product
     {
         double value = new Double(v);
 
-        return null;
+        return (value * coefficient) + "";
     }
 
     public StringProperty nameProperty()

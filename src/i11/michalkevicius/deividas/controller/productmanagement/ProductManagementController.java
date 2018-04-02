@@ -309,7 +309,7 @@ public class ProductManagementController implements Initializable, ChangeListene
         List<Product> result = data;
         if (textFilter.length() != 0)
         {
-            result = result.parallelStream().filter((it) -> it.getName().contains(textFilter)).collect(Collectors.toList());
+            result = result.parallelStream().filter((it) -> it.getName() != null && it.getName().toLowerCase().contains(textFilter)).collect(Collectors.toList());
         }
         showResults(result);
     }
