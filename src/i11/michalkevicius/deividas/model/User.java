@@ -27,10 +27,10 @@ public class User
             return;
         setId(users.getString("Nr"));
         setName(users.getString("Vardas"));
-        setLastname(users.getString("Pavarde"));
-        setEmail(users.getString("Elpastas"));
+        setLastname(users.getString("Pavardė"));
+        setEmail(users.getString("Elpaštas"));
         setTelephone(users.getString("Telefonas"));
-        setLogin(users.getString("Login"));
+        setLogin(users.getString("Prisijungimas"));
     }
 
     public String getName()
