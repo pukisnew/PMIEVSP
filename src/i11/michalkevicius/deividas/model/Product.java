@@ -145,7 +145,7 @@ public class Product
     private StringProperty natural_protein = new SimpleStringProperty("");
     private StringProperty starch = new SimpleStringProperty("");
 
-    public Product() throws SQLException
+    public Product()
     {
 
     }

@@ -329,22 +329,16 @@ public class ProductManagementController implements Initializable, ChangeListene
     @Override
     public void changed(ObservableValue<? extends Product> observable, Product oldValue, Product newValue)
     {
-        try
+
+        if (newValue == NEW_PRODUCT)
         {
-            if (newValue == NEW_PRODUCT)
-            {
-                bindProduct(new Product());
-                deleteButton.setVisible(false);
-            }
-            else if (newValue != null)
-            {
-                bindProduct(newValue);
-                deleteButton.setVisible(true);
-            }
+            bindProduct(new Product());
+            deleteButton.setVisible(false);
         }
-        catch (SQLException e)
+        else if (newValue != null)
         {
-            e.printStackTrace();
+            bindProduct(newValue);
+            deleteButton.setVisible(true);
         }
     }
 
