@@ -7,13 +7,16 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.Collections;
+import java.util.List;
 
 public class Product
 {
+    private String id = "";
     public Product(ResultSet product) throws SQLException
     {
         if (product == null)
             return;
+        setId(product.getInt("id") + "");
         setName(product.getString("Pavadinimas"));
         setKcal(product.getFloat("Energija (kcal)") + "");
         setKj(product.getFloat("Energija (kJ)") + "");
@@ -78,7 +81,6 @@ public class Product
         setNatural_protein(product.getFloat("Augalinių baltymų (g)") + "");
         setStarch(product.getFloat("Krakmolo (g)") + "");
     }
-
     private StringProperty name = new SimpleStringProperty("");
     private StringProperty kcal = new SimpleStringProperty("");
     private StringProperty kj = new SimpleStringProperty("");
@@ -143,9 +145,389 @@ public class Product
     private StringProperty natural_protein = new SimpleStringProperty("");
     private StringProperty starch = new SimpleStringProperty("");
 
-    Product() throws SQLException
+    public Product() throws SQLException
     {
 
+    }
+
+    Product(Product product, float coefficient)
+    {
+        setId(product.getId());
+        setName((product.getName()));
+        setKcal((multiply(coefficient, product.getKcal())));
+        setKj((multiply(coefficient, product.getKj())));
+        setCarbohydrates((multiply(coefficient, product.getCarbohydrates())));
+        setFat((multiply(coefficient, product.getFat())));
+        setProtein((multiply(coefficient, product.getProtein())));
+        setFiber((multiply(coefficient, product.getFiber())));
+        setWater((multiply(coefficient, product.getWater())));
+        setAlcohol((multiply(coefficient, product.getAlcohol())));
+        setAsh((multiply(coefficient, product.getAsh())));
+        setMonosacharids((multiply(coefficient, product.getMonosacharids())));
+        setDisacharids((multiply(coefficient, product.getDisacharids())));
+        setFakeSuger((multiply(coefficient, product.getFakeSuger())));
+        setGrain((multiply(coefficient, product.getGrain())));
+        setSugar((multiply(coefficient, product.getSugar())));
+        setSuperFat((multiply(coefficient, product.getSuperFat())));
+        setFat4_10((multiply(coefficient, product.getFat4_10())));
+        setFat12((multiply(coefficient, product.getFat12())));
+        setFat14((multiply(coefficient, product.getFat14())));
+        setFat16((multiply(coefficient, product.getFat16())));
+        setFat18((multiply(coefficient, product.getFat18())));
+        setFat20((multiply(coefficient, product.getFat20())));
+        setMonoSuperFat((multiply(coefficient, product.getMonoSuperFat())));
+        setFat16_1((multiply(coefficient, product.getFat16_1())));
+        setFat18_1((multiply(coefficient, product.getFat18_1())));
+        setPoliSuperFat((multiply(coefficient, product.getPoliSuperFat())));
+        setFat18_2((multiply(coefficient, product.getFat18_2())));
+        setFat18_3((multiply(coefficient, product.getFat18_3())));
+        setFat20_4((multiply(coefficient, product.getFat20_4())));
+        setEpa((multiply(coefficient, product.getEpa())));
+        setDpa((multiply(coefficient, product.getDpa())));
+        setDha((multiply(coefficient, product.getDha())));
+        setCholesterol((multiply(coefficient, product.getCholesterol())));
+        setRetinol((multiply(coefficient, product.getRetinol())));
+        setRetinolequivalent((multiply(coefficient, product.getRetinolequivalent())));
+        setBetakaroten((multiply(coefficient, product.getBetakaroten())));
+        setVit_d((multiply(coefficient, product.getVit_d())));
+        setVit_e((multiply(coefficient, product.getVit_e())));
+        setVit_k((multiply(coefficient, product.getVit_k())));
+        setTiamin((multiply(coefficient, product.getTiamin())));
+        setRiboflavin((multiply(coefficient, product.getRiboflavin())));
+        setVit_c((multiply(coefficient, product.getVit_c())));
+        setNiacin((multiply(coefficient, product.getNiacin())));
+        setNiacinequivalent((multiply(coefficient, product.getNiacinequivalent())));
+        setVit_b_6((multiply(coefficient, product.getVit_b_6())));
+        setVit_b_12((multiply(coefficient, product.getVit_b_12())));
+        setFolate((multiply(coefficient, product.getFolate())));
+        setPhosphorus((multiply(coefficient, product.getPhosphorus())));
+        setIodine((multiply(coefficient, product.getIodine())));
+        setIron((multiply(coefficient, product.getIron())));
+        setCalcium((multiply(coefficient, product.getCalcium())));
+        setPotassium((multiply(coefficient, product.getPotassium())));
+        setMagnesium((multiply(coefficient, product.getMagnesium())));
+        setSodium((multiply(coefficient, product.getSodium())));
+        setSalt((multiply(coefficient, product.getSalt())));
+        setSelenium((multiply(coefficient, product.getSelenium())));
+        setZinc((multiply(coefficient, product.getZinc())));
+        setRest((multiply(coefficient, product.getRest())));
+        setEdible_coefficient((multiply(coefficient, product.getEdible_coefficient())));
+        setDry_material((multiply(coefficient, product.getDry_material())));
+        setAnimal_protein((multiply(coefficient, product.getAnimal_protein())));
+        setNatural_protein((multiply(coefficient, product.getNatural_protein())));
+        setStarch((multiply(coefficient, product.getStarch())));
+    }
+
+    private static String multiply(float coefficient, String v)
+    {
+        double value = new Double(v);
+
+        return null;
+    }
+
+    public StringProperty nameProperty()
+    {
+        return name;
+    }
+
+    public StringProperty kcalProperty()
+    {
+        return kcal;
+    }
+
+    public StringProperty kjProperty()
+    {
+        return kj;
+    }
+
+    public StringProperty carbohydratesProperty()
+    {
+        return carbohydrates;
+    }
+
+    public StringProperty fatProperty()
+    {
+        return fat;
+    }
+
+    public StringProperty proteinProperty()
+    {
+        return protein;
+    }
+
+    public StringProperty fiberProperty()
+    {
+        return fiber;
+    }
+
+    public StringProperty waterProperty()
+    {
+        return water;
+    }
+
+    public StringProperty alcoholProperty()
+    {
+        return alcohol;
+    }
+
+    public StringProperty ashProperty()
+    {
+        return ash;
+    }
+
+    public StringProperty monosacharidsProperty()
+    {
+        return monosacharids;
+    }
+
+    public StringProperty disacharidsProperty()
+    {
+        return disacharids;
+    }
+
+    public StringProperty fakeSugerProperty()
+    {
+        return fakeSuger;
+    }
+
+    public StringProperty grainProperty()
+    {
+        return grain;
+    }
+
+    public StringProperty sugarProperty()
+    {
+        return sugar;
+    }
+
+    public StringProperty superFatProperty()
+    {
+        return superFat;
+    }
+
+    public StringProperty fat4_10Property()
+    {
+        return fat4_10;
+    }
+
+    public StringProperty fat12Property()
+    {
+        return fat12;
+    }
+
+    public StringProperty fat14Property()
+    {
+        return fat14;
+    }
+
+    public StringProperty fat16Property()
+    {
+        return fat16;
+    }
+
+    public StringProperty fat18Property()
+    {
+        return fat18;
+    }
+
+    public StringProperty fat20Property()
+    {
+        return fat20;
+    }
+
+    public StringProperty monoSuperFatProperty()
+    {
+        return monoSuperFat;
+    }
+
+    public StringProperty fat16_1Property()
+    {
+        return fat16_1;
+    }
+
+    public StringProperty fat18_1Property()
+    {
+        return fat18_1;
+    }
+
+    public StringProperty poliSuperFatProperty()
+    {
+        return poliSuperFat;
+    }
+
+    public StringProperty fat18_2Property()
+    {
+        return fat18_2;
+    }
+
+    public StringProperty fat18_3Property()
+    {
+        return fat18_3;
+    }
+
+    public StringProperty fat20_4Property()
+    {
+        return fat20_4;
+    }
+
+    public StringProperty epaProperty()
+    {
+        return epa;
+    }
+
+    public StringProperty dpaProperty()
+    {
+        return dpa;
+    }
+
+    public StringProperty dhaProperty()
+    {
+        return dha;
+    }
+
+    public StringProperty cholesterolProperty()
+    {
+        return cholesterol;
+    }
+
+    public StringProperty retinolProperty()
+    {
+        return retinol;
+    }
+
+    public StringProperty retinolequivalentProperty()
+    {
+        return retinolequivalent;
+    }
+
+    public StringProperty betakarotenProperty()
+    {
+        return betakaroten;
+    }
+
+    public StringProperty vit_dProperty()
+    {
+        return vit_d;
+    }
+
+    public StringProperty vit_eProperty()
+    {
+        return vit_e;
+    }
+
+    public StringProperty vit_kProperty()
+    {
+        return vit_k;
+    }
+
+    public StringProperty tiaminProperty()
+    {
+        return tiamin;
+    }
+
+    public StringProperty riboflavinProperty()
+    {
+        return riboflavin;
+    }
+
+    public StringProperty vit_cProperty()
+    {
+        return vit_c;
+    }
+
+    public StringProperty niacinProperty()
+    {
+        return niacin;
+    }
+
+    public StringProperty niacinequivalentProperty()
+    {
+        return niacinequivalent;
+    }
+
+    public StringProperty vit_b_6Property()
+    {
+        return vit_b_6;
+    }
+
+    public StringProperty vit_b_12Property()
+    {
+        return vit_b_12;
+    }
+
+    public StringProperty folateProperty()
+    {
+        return folate;
+    }
+
+    public StringProperty phosphorusProperty()
+    {
+        return phosphorus;
+    }
+
+    public StringProperty iodineProperty()
+    {
+        return iodine;
+    }
+
+    public StringProperty ironProperty()
+    {
+        return iron;
+    }
+
+    public StringProperty calciumProperty()
+    {
+        return calcium;
+    }
+
+    public StringProperty potassiumProperty()
+    {
+        return potassium;
+    }
+
+    public StringProperty magnesiumProperty()
+    {
+        return magnesium;
+    }
+
+    public StringProperty sodiumProperty()
+    {
+        return sodium;
+    }
+
+    public StringProperty saltProperty()
+    {
+        return salt;
+    }
+
+    public StringProperty seleniumProperty()
+    {
+        return selenium;
+    }
+
+    public StringProperty zincProperty()
+    {
+        return zinc;
+    }
+
+    public StringProperty restProperty()
+    {
+        return rest;
+    }
+
+    public StringProperty edible_coefficientProperty()
+    {
+        return edible_coefficient;
+    }
+
+    public StringProperty dry_materialProperty()
+    {
+        return dry_material;
+    }
+
+    public StringProperty animal_proteinProperty()
+    {
+        return animal_protein;
     }
 
     public static ArrayList<String> propertyNames()
@@ -218,71 +600,20 @@ public class Product
         return names;
     }
 
-    Product(Product product, float coefficient)
+    public StringProperty natural_proteinProperty()
     {
-        setName((product.getName()) + "");
-        setKcal((coefficient * product.getKcal()) + "");
-        setKj((coefficient * product.getKj()) + "");
-        setCarbohydrates((coefficient * product.getCarbohydrates()) + "");
-        setFat((coefficient * product.getFat()) + "");
-        setProtein((coefficient * product.getProtein()) + "");
-        setFiber((coefficient * product.getFiber()) + "");
-        setWater((coefficient * product.getWater()) + "");
-        setAlcohol((coefficient * product.getAlcohol()) + "");
-        setAsh((coefficient * product.getAsh()) + "");
-        setMonosacharids((coefficient * product.getMonosacharids()) + "");
-        setDisacharids((coefficient * product.getDisacharids()) + "");
-        setFakeSuger((coefficient * product.getFakeSuger()) + "");
-        setGrain((coefficient * product.getGrain()) + "");
-        setSugar((coefficient * product.getSugar()) + "");
-        setSuperFat((coefficient * product.getSuperFat()) + "");
-        setFat4_10((coefficient * product.getFat4_10()) + "");
-        setFat12((coefficient * product.getFat12()) + "");
-        setFat14((coefficient * product.getFat14()) + "");
-        setFat16((coefficient * product.getFat16()) + "");
-        setFat18((coefficient * product.getFat18()) + "");
-        setFat20((coefficient * product.getFat20()) + "");
-        setMonoSuperFat((coefficient * product.getMonoSuperFat()) + "");
-        setFat16_1((coefficient * product.getFat16_1()) + "");
-        setFat18_1((coefficient * product.getFat18_1()) + "");
-        setPoliSuperFat((coefficient * product.getPoliSuperFat()) + "");
-        setFat18_2((coefficient * product.getFat18_2()) + "");
-        setFat18_3((coefficient * product.getFat18_3()) + "");
-        setFat20_4((coefficient * product.getFat20_4()) + "");
-        setEpa((coefficient * product.getEpa()) + "");
-        setDpa((coefficient * product.getDpa()) + "");
-        setDha((coefficient * product.getDha()) + "");
-        setCholesterol((coefficient * product.getCholesterol()) + "");
-        setRetinol((coefficient * product.getRetinol()) + "");
-        setRetinolequivalent((coefficient * product.getRetinolequivalent()) + "");
-        setBetakaroten((coefficient * product.getBetakaroten()) + "");
-        setVit_d((coefficient * product.getVit_d()) + "");
-        setVit_e((coefficient * product.getVit_e()) + "");
-        setVit_k((coefficient * product.getVit_k()) + "");
-        setTiamin((coefficient * product.getTiamin()) + "");
-        setRiboflavin((coefficient * product.getRiboflavin()) + "");
-        setVit_c((coefficient * product.getVit_c()) + "");
-        setNiacin((coefficient * product.getNiacin()) + "");
-        setNiacinequivalent((coefficient * product.getNiacinequivalent()) + "");
-        setVit_b_6((coefficient * product.getVit_b_6()) + "");
-        setVit_b_12((coefficient * product.getVit_b_12()) + "");
-        setFolate((coefficient * product.getFolate()) + "");
-        setPhosphorus((coefficient * product.getPhosphorus()) + "");
-        setIodine((coefficient * product.getIodine()) + "");
-        setIron((coefficient * product.getIron()) + "");
-        setCalcium((coefficient * product.getCalcium()) + "");
-        setPotassium((coefficient * product.getPotassium()) + "");
-        setMagnesium((coefficient * product.getMagnesium()) + "");
-        setSodium((coefficient * product.getSodium()) + "");
-        setSalt((coefficient * product.getSalt()) + "");
-        setSelenium((coefficient * product.getSelenium()) + "");
-        setZinc((coefficient * product.getZinc()) + "");
-        setRest((coefficient * product.getRest()) + "");
-        setEdible_coefficient((coefficient * product.getEdible_coefficient()) + "");
-        setDry_material((coefficient * product.getDry_material()) + "");
-        setAnimal_protein((coefficient * product.getAnimal_protein()) + "");
-        setNatural_protein((coefficient * product.getNatural_protein()) + "");
-        setStarch((coefficient * product.getStarch()) + "");
+        return natural_protein;
+    }
+
+    public StringProperty starchProperty()
+    {
+        return starch;
+    }
+
+    @Override
+    public String toString()
+    {
+        return getName();
     }
 
     public String getName()
@@ -295,9 +626,9 @@ public class Product
         this.name.set(name);
     }
 
-    public float getKcal()
+    public String getKcal()
     {
-        return new Float(kcal.get());
+        return kcal.get();
     }
 
     public void setKcal(String kcal)
@@ -305,9 +636,9 @@ public class Product
         this.kcal.set(kcal);
     }
 
-    public float getKj()
+    public String getKj()
     {
-        return new Float(kj.get());
+        return kj.get();
     }
 
     public void setKj(String kj)
@@ -315,9 +646,9 @@ public class Product
         this.kj.set(kj);
     }
 
-    public float getCarbohydrates()
+    public String getCarbohydrates()
     {
-        return new Float(carbohydrates.get());
+        return carbohydrates.get();
     }
 
     public void setCarbohydrates(String carbohydrates)
@@ -325,9 +656,9 @@ public class Product
         this.carbohydrates.set(carbohydrates);
     }
 
-    public float getFat()
+    public String getFat()
     {
-        return new Float(fat.get());
+        return fat.get();
     }
 
     public void setFat(String fat)
@@ -335,9 +666,9 @@ public class Product
         this.fat.set(fat);
     }
 
-    public float getProtein()
+    public String getProtein()
     {
-        return new Float(protein.get());
+        return protein.get();
     }
 
     public void setProtein(String protein)
@@ -345,9 +676,9 @@ public class Product
         this.protein.set(protein);
     }
 
-    public float getFiber()
+    public String getFiber()
     {
-        return new Float(fiber.get());
+        return fiber.get();
     }
 
     public void setFiber(String fiber)
@@ -355,9 +686,9 @@ public class Product
         this.fiber.set(fiber);
     }
 
-    public float getWater()
+    public String getWater()
     {
-        return new Float(water.get());
+        return water.get();
     }
 
     public void setWater(String water)
@@ -365,9 +696,9 @@ public class Product
         this.water.set(water);
     }
 
-    public float getAlcohol()
+    public String getAlcohol()
     {
-        return new Float(alcohol.get());
+        return alcohol.get();
     }
 
     public void setAlcohol(String alcohol)
@@ -375,9 +706,9 @@ public class Product
         this.alcohol.set(alcohol);
     }
 
-    public float getAsh()
+    public String getAsh()
     {
-        return new Float(ash.get());
+        return ash.get();
     }
 
     public void setAsh(String ash)
@@ -385,9 +716,9 @@ public class Product
         this.ash.set(ash);
     }
 
-    public float getMonosacharids()
+    public String getMonosacharids()
     {
-        return new Float(monosacharids.get());
+        return monosacharids.get();
     }
 
     public void setMonosacharids(String monosacharids)
@@ -395,9 +726,9 @@ public class Product
         this.monosacharids.set(monosacharids);
     }
 
-    public float getDisacharids()
+    public String getDisacharids()
     {
-        return new Float(disacharids.get());
+        return disacharids.get();
     }
 
     public void setDisacharids(String disacharids)
@@ -405,9 +736,9 @@ public class Product
         this.disacharids.set(disacharids);
     }
 
-    public float getFakeSuger()
+    public String getFakeSuger()
     {
-        return new Float(fakeSuger.get());
+        return fakeSuger.get();
     }
 
     public void setFakeSuger(String fakeSuger)
@@ -415,9 +746,9 @@ public class Product
         this.fakeSuger.set(fakeSuger);
     }
 
-    public float getGrain()
+    public String getGrain()
     {
-        return new Float(grain.get());
+        return grain.get();
     }
 
     public void setGrain(String grain)
@@ -425,9 +756,9 @@ public class Product
         this.grain.set(grain);
     }
 
-    public float getSugar()
+    public String getSugar()
     {
-        return new Float(sugar.get());
+        return sugar.get();
     }
 
     public void setSugar(String sugar)
@@ -435,9 +766,9 @@ public class Product
         this.sugar.set(sugar);
     }
 
-    public float getSuperFat()
+    public String getSuperFat()
     {
-        return new Float(superFat.get());
+        return superFat.get();
     }
 
     public void setSuperFat(String superFat)
@@ -445,9 +776,9 @@ public class Product
         this.superFat.set(superFat);
     }
 
-    public float getFat4_10()
+    public String getFat4_10()
     {
-        return new Float(fat4_10.get());
+        return fat4_10.get();
     }
 
     public void setFat4_10(String fat4_10)
@@ -455,9 +786,9 @@ public class Product
         this.fat4_10.set(fat4_10);
     }
 
-    public float getFat12()
+    public String getFat12()
     {
-        return new Float(fat12.get());
+        return fat12.get();
     }
 
     public void setFat12(String fat12)
@@ -465,9 +796,9 @@ public class Product
         this.fat12.set(fat12);
     }
 
-    public float getFat14()
+    public String getFat14()
     {
-        return new Float(fat14.get());
+        return fat14.get();
     }
 
     public void setFat14(String fat14)
@@ -475,9 +806,9 @@ public class Product
         this.fat14.set(fat14);
     }
 
-    public float getFat16()
+    public String getFat16()
     {
-        return new Float(fat16.get());
+        return fat16.get();
     }
 
     public void setFat16(String fat16)
@@ -485,9 +816,9 @@ public class Product
         this.fat16.set(fat16);
     }
 
-    public float getFat18()
+    public String getFat18()
     {
-        return new Float(fat18.get());
+        return fat18.get();
     }
 
     public void setFat18(String fat18)
@@ -495,9 +826,9 @@ public class Product
         this.fat18.set(fat18);
     }
 
-    public float getFat20()
+    public String getFat20()
     {
-        return new Float(fat20.get());
+        return fat20.get();
     }
 
     public void setFat20(String fat20)
@@ -505,9 +836,9 @@ public class Product
         this.fat20.set(fat20);
     }
 
-    public float getMonoSuperFat()
+    public String getMonoSuperFat()
     {
-        return new Float(monoSuperFat.get());
+        return monoSuperFat.get();
     }
 
     public void setMonoSuperFat(String monoSuperFat)
@@ -515,9 +846,9 @@ public class Product
         this.monoSuperFat.set(monoSuperFat);
     }
 
-    public float getFat16_1()
+    public String getFat16_1()
     {
-        return new Float(fat16_1.get());
+        return fat16_1.get();
     }
 
     public void setFat16_1(String fat16_1)
@@ -525,9 +856,9 @@ public class Product
         this.fat16_1.set(fat16_1);
     }
 
-    public float getFat18_1()
+    public String getFat18_1()
     {
-        return new Float(fat18_1.get());
+        return fat18_1.get();
     }
 
     public void setFat18_1(String fat18_1)
@@ -535,9 +866,9 @@ public class Product
         this.fat18_1.set(fat18_1);
     }
 
-    public float getPoliSuperFat()
+    public String getPoliSuperFat()
     {
-        return new Float(poliSuperFat.get());
+        return poliSuperFat.get();
     }
 
     public void setPoliSuperFat(String poliSuperFat)
@@ -545,9 +876,9 @@ public class Product
         this.poliSuperFat.set(poliSuperFat);
     }
 
-    public float getFat18_2()
+    public String getFat18_2()
     {
-        return new Float(fat18_2.get());
+        return fat18_2.get();
     }
 
     public void setFat18_2(String fat18_2)
@@ -555,9 +886,9 @@ public class Product
         this.fat18_2.set(fat18_2);
     }
 
-    public float getFat18_3()
+    public String getFat18_3()
     {
-        return new Float(fat18_3.get());
+        return fat18_3.get();
     }
 
     public void setFat18_3(String fat18_3)
@@ -565,9 +896,9 @@ public class Product
         this.fat18_3.set(fat18_3);
     }
 
-    public float getFat20_4()
+    public String getFat20_4()
     {
-        return new Float(fat20_4.get());
+        return fat20_4.get();
     }
 
     public void setFat20_4(String fat20_4)
@@ -575,9 +906,9 @@ public class Product
         this.fat20_4.set(fat20_4);
     }
 
-    public float getEpa()
+    public String getEpa()
     {
-        return new Float(epa.get());
+        return epa.get();
     }
 
     public void setEpa(String epa)
@@ -585,9 +916,9 @@ public class Product
         this.epa.set(epa);
     }
 
-    public float getDpa()
+    public String getDpa()
     {
-        return new Float(dpa.get());
+        return dpa.get();
     }
 
     public void setDpa(String dpa)
@@ -595,9 +926,9 @@ public class Product
         this.dpa.set(dpa);
     }
 
-    public float getDha()
+    public String getDha()
     {
-        return new Float(dha.get());
+        return dha.get();
     }
 
     public void setDha(String dha)
@@ -605,9 +936,9 @@ public class Product
         this.dha.set(dha);
     }
 
-    public float getCholesterol()
+    public String getCholesterol()
     {
-        return new Float(cholesterol.get());
+        return cholesterol.get();
     }
 
     public void setCholesterol(String cholesterol)
@@ -615,9 +946,9 @@ public class Product
         this.cholesterol.set(cholesterol);
     }
 
-    public float getRetinol()
+    public String getRetinol()
     {
-        return new Float(retinol.get());
+        return retinol.get();
     }
 
     public void setRetinol(String retinol)
@@ -625,9 +956,9 @@ public class Product
         this.retinol.set(retinol);
     }
 
-    public float getRetinolequivalent()
+    public String getRetinolequivalent()
     {
-        return new Float(retinolequivalent.get());
+        return retinolequivalent.get();
     }
 
     public void setRetinolequivalent(String retinolequivalent)
@@ -635,9 +966,9 @@ public class Product
         this.retinolequivalent.set(retinolequivalent);
     }
 
-    public float getBetakaroten()
+    public String getBetakaroten()
     {
-        return new Float(betakaroten.get());
+        return betakaroten.get();
     }
 
     public void setBetakaroten(String betakaroten)
@@ -645,9 +976,9 @@ public class Product
         this.betakaroten.set(betakaroten);
     }
 
-    public float getVit_d()
+    public String getVit_d()
     {
-        return new Float(vit_d.get());
+        return vit_d.get();
     }
 
     public void setVit_d(String vit_d)
@@ -655,9 +986,9 @@ public class Product
         this.vit_d.set(vit_d);
     }
 
-    public float getVit_e()
+    public String getVit_e()
     {
-        return new Float(vit_e.get());
+        return vit_e.get();
     }
 
     public void setVit_e(String vit_e)
@@ -665,9 +996,9 @@ public class Product
         this.vit_e.set(vit_e);
     }
 
-    public float getVit_k()
+    public String getVit_k()
     {
-        return new Float(vit_k.get());
+        return vit_k.get();
     }
 
     public void setVit_k(String vit_k)
@@ -675,9 +1006,9 @@ public class Product
         this.vit_k.set(vit_k);
     }
 
-    public float getTiamin()
+    public String getTiamin()
     {
-        return new Float(tiamin.get());
+        return tiamin.get();
     }
 
     public void setTiamin(String tiamin)
@@ -685,9 +1016,9 @@ public class Product
         this.tiamin.set(tiamin);
     }
 
-    public float getRiboflavin()
+    public String getRiboflavin()
     {
-        return new Float(riboflavin.get());
+        return riboflavin.get();
     }
 
     public void setRiboflavin(String riboflavin)
@@ -695,9 +1026,9 @@ public class Product
         this.riboflavin.set(riboflavin);
     }
 
-    public float getVit_c()
+    public String getVit_c()
     {
-        return new Float(vit_c.get());
+        return vit_c.get();
     }
 
     public void setVit_c(String vit_c)
@@ -705,9 +1036,9 @@ public class Product
         this.vit_c.set(vit_c);
     }
 
-    public float getNiacin()
+    public String getNiacin()
     {
-        return new Float(niacin.get());
+        return niacin.get();
     }
 
     public void setNiacin(String niacin)
@@ -715,9 +1046,9 @@ public class Product
         this.niacin.set(niacin);
     }
 
-    public float getNiacinequivalent()
+    public String getNiacinequivalent()
     {
-        return new Float(niacinequivalent.get());
+        return niacinequivalent.get();
     }
 
     public void setNiacinequivalent(String niacinequivalent)
@@ -725,9 +1056,9 @@ public class Product
         this.niacinequivalent.set(niacinequivalent);
     }
 
-    public float getVit_b_6()
+    public String getVit_b_6()
     {
-        return new Float(vit_b_6.get());
+        return vit_b_6.get();
     }
 
     public void setVit_b_6(String vit_b_6)
@@ -735,9 +1066,9 @@ public class Product
         this.vit_b_6.set(vit_b_6);
     }
 
-    public float getVit_b_12()
+    public String getVit_b_12()
     {
-        return new Float(vit_b_12.get());
+        return vit_b_12.get();
     }
 
     public void setVit_b_12(String vit_b_12)
@@ -745,9 +1076,9 @@ public class Product
         this.vit_b_12.set(vit_b_12);
     }
 
-    public float getFolate()
+    public String getFolate()
     {
-        return new Float(folate.get());
+        return folate.get();
     }
 
     public void setFolate(String folate)
@@ -755,9 +1086,9 @@ public class Product
         this.folate.set(folate);
     }
 
-    public float getPhosphorus()
+    public String getPhosphorus()
     {
-        return new Float(phosphorus.get());
+        return phosphorus.get();
     }
 
     public void setPhosphorus(String phosphorus)
@@ -765,9 +1096,9 @@ public class Product
         this.phosphorus.set(phosphorus);
     }
 
-    public float getIodine()
+    public String getIodine()
     {
-        return new Float(iodine.get());
+        return iodine.get();
     }
 
     public void setIodine(String iodine)
@@ -775,9 +1106,9 @@ public class Product
         this.iodine.set(iodine);
     }
 
-    public float getIron()
+    public String getIron()
     {
-        return new Float(iron.get());
+        return iron.get();
     }
 
     public void setIron(String iron)
@@ -785,9 +1116,9 @@ public class Product
         this.iron.set(iron);
     }
 
-    public float getCalcium()
+    public String getCalcium()
     {
-        return new Float(calcium.get());
+        return calcium.get();
     }
 
     public void setCalcium(String calcium)
@@ -795,9 +1126,9 @@ public class Product
         this.calcium.set(calcium);
     }
 
-    public float getPotassium()
+    public String getPotassium()
     {
-        return new Float(potassium.get());
+        return potassium.get();
     }
 
     public void setPotassium(String potassium)
@@ -805,9 +1136,9 @@ public class Product
         this.potassium.set(potassium);
     }
 
-    public float getMagnesium()
+    public String getMagnesium()
     {
-        return new Float(magnesium.get());
+        return magnesium.get();
     }
 
     public void setMagnesium(String magnesium)
@@ -815,9 +1146,9 @@ public class Product
         this.magnesium.set(magnesium);
     }
 
-    public float getSodium()
+    public String getSodium()
     {
-        return new Float(sodium.get());
+        return sodium.get();
     }
 
     public void setSodium(String sodium)
@@ -825,9 +1156,9 @@ public class Product
         this.sodium.set(sodium);
     }
 
-    public float getSalt()
+    public String getSalt()
     {
-        return new Float(salt.get());
+        return salt.get();
     }
 
     public void setSalt(String salt)
@@ -835,9 +1166,9 @@ public class Product
         this.salt.set(salt);
     }
 
-    public float getSelenium()
+    public String getSelenium()
     {
-        return new Float(selenium.get());
+        return selenium.get();
     }
 
     public void setSelenium(String selenium)
@@ -845,9 +1176,9 @@ public class Product
         this.selenium.set(selenium);
     }
 
-    public float getZinc()
+    public String getZinc()
     {
-        return new Float(zinc.get());
+        return zinc.get();
     }
 
     public void setZinc(String zinc)
@@ -855,9 +1186,9 @@ public class Product
         this.zinc.set(zinc);
     }
 
-    public float getRest()
+    public String getRest()
     {
-        return new Float(rest.get());
+        return rest.get();
     }
 
     public void setRest(String rest)
@@ -865,9 +1196,9 @@ public class Product
         this.rest.set(rest);
     }
 
-    public float getEdible_coefficient()
+    public String getEdible_coefficient()
     {
-        return new Float(edible_coefficient.get());
+        return edible_coefficient.get();
     }
 
     public void setEdible_coefficient(String edible_coefficient)
@@ -875,9 +1206,9 @@ public class Product
         this.edible_coefficient.set(edible_coefficient);
     }
 
-    public float getDry_material()
+    public String getDry_material()
     {
-        return new Float(dry_material.get());
+        return dry_material.get();
     }
 
     public void setDry_material(String dry_material)
@@ -885,9 +1216,9 @@ public class Product
         this.dry_material.set(dry_material);
     }
 
-    public float getAnimal_protein()
+    public String getAnimal_protein()
     {
-        return new Float(animal_protein.get());
+        return animal_protein.get();
     }
 
     public void setAnimal_protein(String animal_protein)
@@ -895,9 +1226,9 @@ public class Product
         this.animal_protein.set(animal_protein);
     }
 
-    public float getNatural_protein()
+    public String getNatural_protein()
     {
-        return new Float(natural_protein.get());
+        return natural_protein.get();
     }
 
     public void setNatural_protein(String natural_protein)
@@ -905,13 +1236,95 @@ public class Product
         this.natural_protein.set(natural_protein);
     }
 
-    public float getStarch()
+    public String getStarch()
     {
-        return new Float(starch.get());
+        return starch.get();
     }
 
     public void setStarch(String starch)
     {
         this.starch.set(starch);
+    }
+
+    public List<StringProperty> bindableProperties()
+    {
+        List<StringProperty> returnable = new ArrayList<>();
+        Collections.addAll(returnable, nameProperty(),
+                kcalProperty(),
+                kjProperty(),
+                carbohydratesProperty(),
+                fatProperty(),
+                proteinProperty(),
+                fiberProperty(),
+                waterProperty(),
+                alcoholProperty(),
+                ashProperty(),
+                monosacharidsProperty(),
+                disacharidsProperty(),
+                fakeSugerProperty(),
+                grainProperty(),
+                sugarProperty(),
+                superFatProperty(),
+                fat4_10Property(),
+                fat12Property(),
+                fat14Property(),
+                fat16Property(),
+                fat18Property(),
+                fat20Property(),
+                monoSuperFatProperty(),
+                fat16_1Property(),
+                fat18_1Property(),
+                poliSuperFatProperty(),
+                fat18_2Property(),
+                fat18_3Property(),
+                fat20_4Property(),
+                epaProperty(),
+                dpaProperty(),
+                dhaProperty(),
+                cholesterolProperty(),
+                retinolProperty(),
+                retinolequivalentProperty(),
+                betakarotenProperty(),
+                vit_dProperty(),
+                vit_eProperty(),
+                vit_kProperty(),
+                tiaminProperty(),
+                riboflavinProperty(),
+                vit_cProperty(),
+                niacinProperty(),
+                niacinequivalentProperty(),
+                vit_b_6Property(),
+                vit_b_12Property(),
+                folateProperty(),
+                phosphorusProperty(),
+                iodineProperty(),
+                ironProperty(),
+                calciumProperty(),
+                potassiumProperty(),
+                magnesiumProperty(),
+                sodiumProperty(),
+                saltProperty(),
+                seleniumProperty(),
+                zincProperty(),
+                restProperty(),
+                edible_coefficientProperty(),
+                dry_materialProperty(),
+                animal_proteinProperty(),
+                natural_proteinProperty(),
+                starchProperty());
+        return returnable;
+    }
+
+    public String getId()
+    {
+        if (id.length() != 0)
+            return id;
+        else
+            return null;
+    }
+
+    public void setId(String id)
+    {
+        this.id = id;
     }
 }
