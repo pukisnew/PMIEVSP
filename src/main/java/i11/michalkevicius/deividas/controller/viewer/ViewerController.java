@@ -5,16 +5,14 @@ import i11.michalkevicius.deividas.controller.R;
 import i11.michalkevicius.deividas.controller.SpreadsheetApp;
 import i11.michalkevicius.deividas.model.Product;
 import i11.michalkevicius.deividas.model.Templatable;
+import javafx.application.Platform;
 import javafx.beans.Observable;
 import javafx.beans.property.ReadOnlyDoubleProperty;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.Event;
 import javafx.fxml.Initializable;
-import javafx.scene.control.Menu;
-import javafx.scene.control.MenuBar;
-import javafx.scene.control.TableColumn;
-import javafx.scene.control.TableView;
+import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 
 import java.io.File;
@@ -22,10 +20,7 @@ import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.net.URL;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
-import java.util.ResourceBundle;
+import java.util.*;
 import java.util.function.Function;
 import java.util.stream.Collectors;
 import java.util.stream.IntStream;
@@ -87,6 +82,16 @@ public class ViewerController implements Initializable
     }
 
     public void onSavePress(Event actionEvent) throws NumberFormatException, FileNotFoundException {
+        TextInputDialog dialog = new TextInputDialog("result");
+        dialog.setTitle("Išsaugoti");
+        dialog.setHeaderText("Įrašykite failo pavadinimą");
+
+        Optional<String> filanemResult = dialog.showAndWait();
+
+        if (!filanemResult.isPresent())
+            return;
+        String filename = filanemResult.get() + ".doc";
+
         List<Templatable> rows = this
                 .table.getItems()
                 .stream()
@@ -139,7 +144,7 @@ public class ViewerController implements Initializable
         Templatable rightTable = new Templatable(R.DOCUMENT.TABLE_RIGHT);
         rightTable.set(Templatable.ROWS, rows.stream().map(Templatable::toTemplate).collect(Collectors.joining(System.lineSeparator())));
         wholetable.set(Templatable.TABLE_RIGHT, rightTable.toTemplate());
-        File f = new File("result.html");
+        File f = new File(filename);
         PrintWriter pw = new PrintWriter(f);
         pw.println(wholetable.toTemplate());
         pw.close();
