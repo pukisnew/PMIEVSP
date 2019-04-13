@@ -320,4 +320,13 @@ public class Product {
         String lowercase = key.toLowerCase();
         return properties.get(lowercase);
     }
+
+    public Map<String, String> toPropertyMap() {
+        properties.put("coefficient", coefficient + "");
+        return properties;
+    }
+
+    public static String getTranslation(String key) {
+        return translations.get(key);
+    }
 }
