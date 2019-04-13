@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import com.jfoenix.controls.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+<AnchorPane xmlns:fx="http://javafx.com/fxml/1" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity"
+            minWidth="-Infinity" prefHeight="489.0" prefWidth="600.0" style="-fx-background-color: #74afad;"
+            xmlns="http://javafx.com/javafx/8.0.121"
+            fx:controller="i11.michalkevicius.deividas.controller.usermanagement.UserManagementController">
+    <children>
+        <TableView fx:id="table" prefHeight="274.0" prefWidth="600.0">
+            <columns>
+                <TableColumn prefWidth="25.0" text="Nr."/>
+                <TableColumn prefWidth="100" text="Vardas"/>
+                <TableColumn prefWidth="100" text="Pavardė"/>
+                <TableColumn prefWidth="100" text="Paštas"/>
+                <TableColumn prefWidth="100" text="Telefonas"/>
+                <TableColumn prefWidth="100" text="Prisijungimas"/>
+                <TableColumn prefWidth="75.0"/>
+            </columns>
+        </TableView>
+        <JFXTextField fx:id="name" layoutX="161.0" layoutY="284.0" promptText="Vardas"/>
+        <JFXTextField fx:id="lastname" layoutX="161.0" layoutY="323.0" promptText="Pavardė"/>
+        <JFXTextField fx:id="email" layoutX="161.0" layoutY="360.0" promptText="El. paštas"/>
+        <JFXTextField fx:id="phone" layoutX="161.0" layoutY="396.0" promptText="Telefonas"/>
+        <JFXPasswordField fx:id="password" layoutX="161.0" layoutY="432.0" promptText="Slaptažodis"/>
+        <JFXButton layoutX="334.0" layoutY="372.0" onAction="#onCreateClick" prefHeight="26.0" prefWidth="105.0"
+                   style="-fx-background-color: #D9853B;" text="Registruoti" textAlignment="CENTER" textFill="#ececea">
+            <font>
+                <Font name="Times New Roman Bold" size="14.0"/>
+            </font>
+        </JFXButton>
+        <JFXButton layoutX="31.0" layoutY="444.0" onAction="#onBackPress" prefHeight="26.0" prefWidth="68.0"
+                   style="-fx-background-color: #D9853B;" text="Išeiti" textAlignment="CENTER" textFill="#ececea">
+            <font>
+                <Font name="Times New Roman Bold" size="14.0"/>
+            </font>
+        </JFXButton>
+    </children>
+</AnchorPane>
