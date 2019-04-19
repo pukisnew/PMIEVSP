@@ -3,6 +3,7 @@ package i11.michalkevicius.deividas.controller;
 import i11.michalkevicius.deividas.controller.admin.AdminLoginStage;
 import i11.michalkevicius.deividas.controller.adminpanel.AdminPanelStage;
 import i11.michalkevicius.deividas.controller.calculator.CalculatorStage;
+import i11.michalkevicius.deividas.controller.login.LoginStage;
 import i11.michalkevicius.deividas.controller.main.MainStage;
 import i11.michalkevicius.deividas.controller.productmanagement.ProductManagementStage;
 import i11.michalkevicius.deividas.controller.usermanagement.UserManagementStage;
@@ -75,7 +76,7 @@ public class SpreadsheetApp extends Application
     public void start(Stage primaryStage) throws Exception
     {
         SpreadsheetApp.primaryStage = primaryStage;
-        launchMainStage();
+        launchLoginStage();
     }
 
     public static void launchUserManagement() throws IOException
@@ -106,6 +107,11 @@ public class SpreadsheetApp extends Application
     public static void launchCalculator() throws IOException
     {
         switchStages(new CalculatorStage());
+    }
+
+    public static void launchLoginStage() throws IOException
+    {
+        switchStages(new LoginStage());
     }
 
 /*    public static void launchAdminUserManagement()

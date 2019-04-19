@@ -28,4 +28,8 @@ public class MainController
     {
         SpreadsheetApp.launchCalculator();
     }
+
+    public void onLeaveClick(ActionEvent actionEvent) throws IOException {
+        SpreadsheetApp.launchLoginStage();
+    }
 }

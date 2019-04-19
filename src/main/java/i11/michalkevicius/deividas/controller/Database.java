@@ -36,6 +36,16 @@ public class Database
     {
         return executeTransaction((Connection c) ->
         {
+            PreparedStatement stmt = c.prepareStatement("SELECT * FROM AdminInfoLogin WHERE Prisijungimas = ? AND Slaptažodis = ? and Adminas = TRUE");
+            prepareLoginStatement(stmt, username, password);
+            stmt.execute();
+            return checkLoginResult(stmt.getResultSet());
+        });
+    }
+    public static boolean attemptLogin(String username, String password) throws SQLException
+    {
+        return executeTransaction((Connection c) ->
+        {
             PreparedStatement stmt = c.prepareStatement("SELECT * FROM AdminInfoLogin WHERE Prisijungimas = ? AND Slaptažodis = ?");
             prepareLoginStatement(stmt, username, password);
             stmt.execute();

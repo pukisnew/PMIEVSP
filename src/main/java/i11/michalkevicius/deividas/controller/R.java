@@ -16,6 +16,7 @@ public class R {
         public static final String MAIN = "/fxml/main.fxml";
         public static final String PRODUCT_REG = "/fxml/product_reg.fxml";
         public static final String CALCULATOR = "/fxml/calculator.fxml";
+        public static final String LOGIN = "/fxml/login.fxml";
     }
 
     public static class DOCUMENT {
