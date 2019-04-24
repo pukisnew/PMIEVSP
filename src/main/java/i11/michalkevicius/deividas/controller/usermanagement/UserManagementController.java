@@ -1,5 +1,6 @@
 package i11.michalkevicius.deividas.controller.usermanagement;
 
+import com.jfoenix.controls.JFXCheckBox;
 import com.jfoenix.controls.JFXPasswordField;
 import com.jfoenix.controls.JFXTextField;
 import i11.michalkevicius.deividas.controller.Database;
@@ -29,6 +30,7 @@ public class UserManagementController implements Initializable
     public JFXTextField email;
     public JFXTextField phone;
     public JFXPasswordField password;
+    public JFXCheckBox adminCheckbox;
 
     @Override
     public void initialize(URL location, ResourceBundle resources)
@@ -81,11 +83,13 @@ public class UserManagementController implements Initializable
             user.setTelephone(phone.getText());
             user.setName(name.getText());
             user.setLastname(lastname.getText());
+            user.setAdmin(adminCheckbox.isSelected());
             Database.createUser(user, password.getText());
             data.add(user);
         }
         catch (SQLException e1)
         {
+            new Alert(Alert.AlertType.ERROR, "Sukurti naudotojo nepavyko! Ar tikrai toks naudotojas neregistruotas?").show();
             e1.printStackTrace();
         }
 

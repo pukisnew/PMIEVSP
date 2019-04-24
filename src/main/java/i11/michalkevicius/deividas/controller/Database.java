@@ -79,20 +79,21 @@ public class Database
 
     public static void createUser(String name, String lastName, String email, String telephone, String password) throws SQLException
     {
-        createUser(name, lastName, email, telephone, email, password);
+        createUser(name, lastName, email, telephone, email, password, false);
     }
 
-    public static Integer createUser(String name, String lastName, String email, String telephone, String login, String password) throws SQLException
+    public static Integer createUser(String name, String lastName, String email, String telephone, String login, String password, boolean isAdmin) throws SQLException
     {
         return executeTransaction((c) ->
         {
-            PreparedStatement stmt = c.prepareStatement("INSERT INTO AdminInfoLogin (Vardas, Pavardė, Elpaštas, Telefonas, Slaptažodis, Prisijungimas) VALUES (?, ?, ?, ?, ?, ?)");
+            PreparedStatement stmt = c.prepareStatement("INSERT INTO AdminInfoLogin (Vardas, Pavardė, Elpaštas, Telefonas, Slaptažodis, Prisijungimas, Adminas) VALUES (?, ?, ?, ?, ?, ?, ?)");
             stmt.setString(1, name);
             stmt.setString(2, lastName);
             stmt.setString(3, email);
             stmt.setString(4, telephone);
             stmt.setString(5, password);
             stmt.setString(6, login);
+            stmt.setBoolean(7, isAdmin);
             stmt.executeUpdate();
             Statement stmt2 = c.createStatement();
             stmt2.execute("SELECT Nr FROM AdminInfoLogin ORDER BY Nr DESC LIMIT 1");
@@ -104,7 +105,7 @@ public class Database
 
     public static void createUser(User user, String password) throws SQLException
     {
-        int id = createUser(user.getName(), user.getLastname(), user.getEmail(), user.getTelephone(), user.getLogin(), password);
+        int id = createUser(user.getName(), user.getLastname(), user.getEmail(), user.getTelephone(), user.getLogin(), password, user.isAdmin());
         user.setId(id);
     }
 
