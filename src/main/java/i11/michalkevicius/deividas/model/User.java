@@ -14,6 +14,7 @@ public class User
     private StringProperty email = new SimpleStringProperty("");
     private StringProperty telephone = new SimpleStringProperty("");
     private StringProperty login = new SimpleStringProperty("");
+    private boolean isAdmin = false;
     //private StringProperty password = new SimpleStringProperty("");
 
     public User() throws SQLException
@@ -96,5 +97,13 @@ public class User
     public void setId(int nr)
     {
         setId(nr + "");
+    }
+
+    public boolean isAdmin() {
+        return isAdmin;
+    }
+
+    public void setAdmin(boolean admin) {
+        isAdmin = admin;
     }
 }
