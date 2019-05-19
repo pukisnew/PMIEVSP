@@ -9,16 +9,20 @@ import java.util.List;
 
 public class Database
 {
-    private static final String DB_NAME = "baigDB.db";
-    private static final String DB_URL = "jdbc:sqlite:" + DB_NAME;
+    private static final String DB_ADDRESS = "";
+    private static final String DB_PORT = "3306";
+    private static final String DB_NAME =  DB_ADDRESS + ":" + DB_PORT + "/kvkmokym_maistskaic";
+    private static final String DB_URL = "jdbc:mariadb://" + DB_NAME;
+    private static final String DB_USERNAME = "";
+    private static final String DB_PASSWORD = "";
     private static Connection c;
 
     static
     {
         try
         {
-            Class.forName("org.sqlite.JDBC");
-            c = DriverManager.getConnection(DB_URL);
+            Class.forName("org.mariadb.jdbc.Driver");
+            c = DriverManager.getConnection(DB_URL, DB_USERNAME, DB_PASSWORD);
         }
         catch (Exception e)
         {
@@ -36,7 +40,7 @@ public class Database
     {
         return executeTransaction((Connection c) ->
         {
-            PreparedStatement stmt = c.prepareStatement("SELECT * FROM AdminInfoLogin WHERE Prisijungimas = ? AND Slaptažodis = ? and Adminas = TRUE");
+            PreparedStatement stmt = c.prepareStatement("call attempt_login_as_admin(?, ?)");
             prepareLoginStatement(stmt, username, password);
             stmt.execute();
             return checkLoginResult(stmt.getResultSet());
@@ -46,7 +50,7 @@ public class Database
     {
         return executeTransaction((Connection c) ->
         {
-            PreparedStatement stmt = c.prepareStatement("SELECT * FROM AdminInfoLogin WHERE Prisijungimas = ? AND Slaptažodis = ?");
+            PreparedStatement stmt = c.prepareStatement("call attempt_login(?, ?)");
             prepareLoginStatement(stmt, username, password);
             stmt.execute();
             return checkLoginResult(stmt.getResultSet());
@@ -86,7 +90,7 @@ public class Database
     {
         return executeTransaction((c) ->
         {
-            PreparedStatement stmt = c.prepareStatement("INSERT INTO AdminInfoLogin (Vardas, Pavardė, Elpaštas, Telefonas, Slaptažodis, Prisijungimas, Adminas) VALUES (?, ?, ?, ?, ?, ?, ?)");
+            PreparedStatement stmt = c.prepareStatement("INSERT INTO AdminInfoLogin (Vardas, Pavardė, Elpaštas, Telefonas, Slaptažodis, Prisijungimas, Adminas) VALUES (?, ?, ?, ?, SHA1(?), ?, ?)");
             stmt.setString(1, name);
             stmt.setString(2, lastName);
             stmt.setString(3, email);
@@ -139,7 +143,7 @@ public class Database
     {
         executeTransaction((c) ->
         {
-            PreparedStatement stmt = c.prepareStatement("INSERT OR REPLACE INTO MaistinesVertesLentele (Pavadinimas, \"Energija (kcal)\", \"Energija (kJ)\", \"Angliavandeniai (g)\", \"Riebalai (g)\", \"Baltymai (g)\", \"Skaidulinės medžiagos(g)\", \"Vanduo (g)\", \"Alkoholis (g)\", \"Pelenai (g)\", \"Monosacharidai (g)\", \"Disacharidai (g)\", \"Saharozė (g)\", \"Viso grūdo, viso (g)\", \"Cukrus, viso (g)\", \"Sočiosios riebiosios rūgštys (g)\", \"Riebiosios rūgštys 4:0-10:0 (g)\", \"Riebiosios rūgštys 12:0 (g)\", \"Riebiosios rūgštys 14:0 (g)\", \"Riebiosios rūgštys 16:0 (g)\", \"Riebiosios rūgštys 18:0 (g)\", \"Riebiosios rūgštys 20:0 (g)\", \"Mononesočiosios riebiosios rūgštys(g)\", \"Riebiosios rūgštys 16:1 (g)\", \"Riebiosios rūgštys 18:1 (g)\", \"Polinesočiosios riebiosios rūgštys (g)\", \"Riebiosios rūgštys 18:2 (g)\", \"Riebiosios rūgštys 18:3 (g)\", \"Riebiosios rūgštys 20:4 (g)\", \"EPA (Riebiosios rūgštys 20:5) (g)\", \"DPA (Riebiosios rūgštys 22:5) (g)\", \"DHA (Riebiosios rūgštys 22:6) (g)\", \"Cholesterolis (mg)\", \"Retinolis (µg)\", \"Retinol ekvivalentas (µg)\", \"Beta-karotenas (µg)\", \"Vitaminas D (µg)\", \"Vitaminas E (mg)\", \"Vitaminas K (µg)\", \"Tiaminas (mg)\", \"Riboflavinas (mg)\", \"Vitaminas C (mg)\", \"Niacinas (mg)\", \"Niacino ekvivalentas (mg)\", \"Vitaminas B-6 (mg)\", \"Vitaminas B-12 (µg)\", \"Folatas (µg)\", \"Fosforas (mg)\", \"Jodas (µg)\", \"Geležis (mg)\", \"Kalcis (mg)\", \"Kalis (mg)\", \"Magnis (mg)\", \"Natris (mg)\", \"Druska (g)\", \"Selenas (µg)\", \"Cinkas (mg)\", \"Atliekos (pvz. lupenos) (%)\", \"Valgomosios dalies koeficientas\", \"Sausųjų medžiagų (g)\", \"Gyvūninių baltymų (g)\", \"Augalinių baltymų (g)\", \"Krakmolo (g)\", \"id\")" +
+            PreparedStatement stmt = c.prepareStatement("INSERT INTO MaistinesVertesLentele (Pavadinimas, `Energija (kcal)`, `Energija (kJ)`, `Angliavandeniai (g)`, `Riebalai (g)`, `Baltymai (g)`, `Skaidulinės medžiagos(g)`, `Vanduo (g)`, `Alkoholis (g)`, `Pelenai (g)`, `Monosacharidai (g)`, `Disacharidai (g)`, `Saharozė (g)`, `Viso grūdo, viso (g)`, `Cukrus, viso (g)`, `Sočiosios riebiosios rūgštys (g)`, `Riebiosios rūgštys 4:0-10:0 (g)`, `Riebiosios rūgštys 12:0 (g)`, `Riebiosios rūgštys 14:0 (g)`, `Riebiosios rūgštys 16:0 (g)`, `Riebiosios rūgštys 18:0 (g)`, `Riebiosios rūgštys 20:0 (g)`, `Mononesočiosios riebiosios rūgštys(g)`, `Riebiosios rūgštys 16:1 (g)`, `Riebiosios rūgštys 18:1 (g)`, `Polinesočiosios riebiosios rūgštys (g)`, `Riebiosios rūgštys 18:2 (g)`, `Riebiosios rūgštys 18:3 (g)`, `Riebiosios rūgštys 20:4 (g)`, `EPA (Riebiosios rūgštys 20:5) (g)`, `DPA (Riebiosios rūgštys 22:5) (g)`, `DHA (Riebiosios rūgštys 22:6) (g)`, `Cholesterolis (mg)`, `Retinolis (µg)`, `Retinol ekvivalentas (µg)`, `Beta-karotenas (µg)`, `Vitaminas D (µg)`, `Vitaminas E (mg)`, `Vitaminas K (µg)`, `Tiaminas (mg)`, `Riboflavinas (mg)`, `Vitaminas C (mg)`, `Niacinas (mg)`, `Niacino ekvivalentas (mg)`, `Vitaminas B-6 (mg)`, `Vitaminas B-12 (µg)`, `Folatas (µg)`, `Fosforas (mg)`, `Jodas (µg)`, `Geležis (mg)`, `Kalcis (mg)`, `Kalis (mg)`, `Magnis (mg)`, `Natris (mg)`, `Druska (g)`, `Selenas (µg)`, `Cinkas (mg)`, `Atliekos (pvz. lupenos) (%)`, `Valgomosios dalies koeficientas`, `Sausųjų medžiagų (g)`, `Gyvūninių baltymų (g)`, `Augalinių baltymų (g)`, `Krakmolo (g)`, `id`)" +
                     "VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?,?, ?, ?, ?, ?, ?, ?, ?, ?, ?,?, ?, ?, ?, ?, ?, ?, ?, ?, ?,?, ?, ?, ?, ?, ?, ?, ?, ?, ?,?, ?, ?, ?, ?, ?, ?, ?, ?, ?,?, ?, ?, ?, ?, ?, ?, ?, ?, ?,?,?,?, ?)");
             stmt.setString(1, product.getProperty("Name"));
             stmt.setString(2, product.getProperty("Kcal"));
