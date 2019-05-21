@@ -65,9 +65,10 @@ public class Database
 
     private static boolean checkLoginResult(ResultSet rs) throws SQLException
     {
-        boolean result = rs.next();
+        rs.next();
+        boolean success = rs.getBoolean("success");
         rs.close();
-        return result;
+        return success;
     }
 
     public static void removeUser(int id) throws SQLException

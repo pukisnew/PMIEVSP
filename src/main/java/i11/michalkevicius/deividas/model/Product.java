@@ -144,6 +144,7 @@ public class Product {
         translations.put("Augalinių baltymų (g)", "natural_protein");
         translations.put("starch", "Krakmolo (g)");
         translations.put("Krakmolo (g)", "starch");
+        translations.put("id", "id");
     }
 
     public Product(ResultSet product) throws SQLException {
