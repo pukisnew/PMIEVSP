@@ -47,6 +47,7 @@ public class Product {
         translations.put("grain", "Viso grūdo, viso (g)");
         translations.put("Viso grūdo, viso (g)", "grain");
         translations.put("sugar", "Cukrus, viso (g)");
+        translations.put("sugars", "Cukrus, viso (g)");
         translations.put("Cukrus, viso (g)", "sugar");
         translations.put("superFat", "Sočiosios riebiosios rūgštys (g)");
         translations.put("Sočiosios riebiosios rūgštys (g)", "superFat");
@@ -145,6 +146,17 @@ public class Product {
         translations.put("starch", "Krakmolo (g)");
         translations.put("Krakmolo (g)", "starch");
         translations.put("id", "id");
+
+        translations.put("kcal_l", "100 g gaminio energinė vertė                                                       riebalai");
+        translations.put("kj_l", "100 g gaminio energinė vertė                                                       riebalai");
+        translations.put("fat_l", "100 g gaminio maistinė vertė riebalai");
+        translations.put("superFat_l", "iš kurių sočiųjų riebalų rūgščių ");
+        translations.put("carbohydrates_l", "angliavandeniai");
+        translations.put("sugars_l", "iš kurių cukrų                                      ");
+
+        translations.put("fiber_l", "skaidulinės medžiagos   ");
+        translations.put("protein_l", "baltymai  ");
+        translations.put("salt_l", "druska  ");
     }
 
     public Product(ResultSet product) throws SQLException {
@@ -153,7 +165,7 @@ public class Product {
             return;
         ResultSetMetaData meta = product.getMetaData();
         int colCount = meta.getColumnCount();
-        for(int i = 1; i <= colCount; i++) {
+        for (int i = 1; i <= colCount; i++) {
             String name = meta.getColumnName(i);
             String translation = translations.get(name);
             String value = product.getString(name);
@@ -184,8 +196,7 @@ public class Product {
             try {
                 Float floatValue = new Float(value) * coefficient;
                 properties.put(key, floatValue.toString());
-            }
-            catch(NumberFormatException err) {
+            } catch (NumberFormatException err) {
                 //property is actually a string so we can just set it
                 properties.put(key, value);
             }
@@ -324,6 +335,7 @@ public class Product {
 
     public Map<String, String> toPropertyMap() {
         properties.put("coefficient", coefficient + "");
+        properties.remove("id");
         return properties;
     }
 
