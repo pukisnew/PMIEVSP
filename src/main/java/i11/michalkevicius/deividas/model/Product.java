@@ -184,8 +184,8 @@ public class Product {
     }
 
     public Product() {
-        this.properties = new HashMap<>();
-        this.stringProperties = new HashMap<>();
+        this.properties = new LinkedHashMap<>();
+        this.stringProperties = new LinkedHashMap<>();
     }
 
     public Product(Product product, float coefficient) {
@@ -334,6 +334,7 @@ public class Product {
     }
 
     public Map<String, String> toPropertyMap() {
+        Map<String, String> properties = new LinkedHashMap<>(this.properties);
         properties.put("coefficient", coefficient + "");
         properties.remove("id");
         return properties;
