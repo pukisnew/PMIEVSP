@@ -39,7 +39,10 @@ public class ViewerController implements Initializable {
         table.setItems(data);
         ObservableList<TableColumn<Product, ?>> columns = table.getColumns();
         List<String> propertyNames = Product.propertyNames();
-        List<PropertyValueFactory<Product, String>> mappedColumns = propertyNames.parallelStream().map((Function<String, PropertyValueFactory<Product, String>>) ProductValueFactory::new).collect(Collectors.toList());
+        List<PropertyValueFactory<Product, String>> mappedColumns = propertyNames
+                .parallelStream()
+                .map((Function<String, PropertyValueFactory<Product, String>>) ProductValueFactory::new)
+                .collect(Collectors.toList());
         IntStream.range(0, columns.size())
                 .forEach((it) ->
                 {
@@ -108,7 +111,6 @@ public class ViewerController implements Initializable {
                 .entrySet()
                 .stream()
                 .map(new EntryToTemplateRowConsumer(R.DOCUMENT.ROW_RIGHT, true, false))
-                .sorted()
                 .collect(Collectors.toList());
         for (int i = 0; i < rows.size(); i++) {
             Templatable row = rows.get(i);
