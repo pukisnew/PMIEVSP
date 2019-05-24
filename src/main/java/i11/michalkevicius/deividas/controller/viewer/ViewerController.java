@@ -39,7 +39,10 @@ public class ViewerController implements Initializable {
         table.setItems(data);
         ObservableList<TableColumn<Product, ?>> columns = table.getColumns();
         List<String> propertyNames = Product.propertyNames();
-        List<PropertyValueFactory<Product, String>> mappedColumns = propertyNames.parallelStream().map((Function<String, PropertyValueFactory<Product, String>>) ProductValueFactory::new).collect(Collectors.toList());
+        List<PropertyValueFactory<Product, String>> mappedColumns = propertyNames
+                .parallelStream()
+                .map((Function<String, PropertyValueFactory<Product, String>>) ProductValueFactory::new)
+                .collect(Collectors.toList());
         IntStream.range(0, columns.size())
                 .forEach((it) ->
                 {
@@ -86,21 +89,15 @@ public class ViewerController implements Initializable {
                 .table.getItems()
                 .stream()
                 .map(Product::toPropertyMap)
-                .reduce(new HashMap<String, String>(), (first, second) -> {
-                    Map<String, String> result = new HashMap<>();
+                .reduce(new LinkedHashMap<>(), (first, second) -> {
+                    Map<String, String> result = new LinkedHashMap<>();
                     float coefficient = Float.parseFloat(second.computeIfAbsent("coefficient", (it) -> "1"));
                     second.remove("coefficient");
                     second.remove("name");
                     for (Map.Entry<String, String> it : second.entrySet()) {
                         float firstValue = new Float(first.computeIfAbsent(it.getKey(), this::getDefaultTemplateFloatValue));
-                        float secondValue = 0;
-                        try {
-                            secondValue = new Float(it.getValue()) / coefficient;
-                        } catch (NumberFormatException err) {
-                            // probably a ?, treating as 9
-                        }
+                        float secondValue = new Float(it.getValue()) / coefficient;
                         result.put(it.getKey(), (firstValue + secondValue) + "");
-
                     }
                     return result;
                 });
@@ -108,7 +105,6 @@ public class ViewerController implements Initializable {
                 .entrySet()
                 .stream()
                 .map(new EntryToTemplateRowConsumer(R.DOCUMENT.ROW_RIGHT, true, false))
-                .sorted()
                 .collect(Collectors.toList());
         for (int i = 0; i < rows.size(); i++) {
             Templatable row = rows.get(i);
@@ -238,10 +234,10 @@ public class ViewerController implements Initializable {
                 template.set(Templatable.UNIT, originalTranslation.substring(start + 1, end));
             else
                 template.set(Templatable.UNIT, "");
-            template.set(Templatable.KILOGRAM, String.format("%d", (int) (value * 1000)));
-            template.set(Templatable.REGULAR, String.format("%d", (int) (value * 100)));
+            template.set(Templatable.KILOGRAM, String.format("%d", (int) (value)));
+            template.set(Templatable.REGULAR, String.format("%d", (int) (value / 10)));
             if(includeHalfValues)
-                template.set(Templatable.HALF, String.format("%d", (int) (value * 50)));
+                template.set(Templatable.HALF, String.format("%d", (int) (value / 20)));
             template.set(Templatable.LAST_ROW, "no");
             return template;
         }
